@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="Settings.scss">
+</head>
+<body>
+<section class="wrapper">
+    {{> titlePage title="Настройки" }}
+    <div class="wrapper_input">
+        {{> input name="avatar" placeholder="Аватар" type="file" }}
+        {{> input name="first_name" placeholder="Имя" type="text" }}
+        {{> input name="second_name" placeholder="Фамилия" type="text" }}
+        {{> input name="login" placeholder="Логин" type="text" }}
+        {{> input name="email" placeholder="Почта" type="text" }}
+        {{> input name="phone" placeholder="Телефон" type="text" }}
+        {{> input name="display_name" placeholder="Имя в чате" type="text" }}
+        {{> input name="oldPassword" placeholder="Старый пароль" type="text" }}
+        {{> input name="newPassword" placeholder="Новый пароль" type="text" }}
+        {{> link link="../Profile/index.html" title="Сохранить" type="text" }}
+    </div>
+</section>
+</body>
+</html>
