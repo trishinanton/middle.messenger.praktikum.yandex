@@ -18,9 +18,9 @@
   "scripts": {
     "clean": "rm -rf dist",
     "node": "node app.cjs",
-    "dev": "run-s clean build node",
+    "dev": "run-s clean start node",
     "dev:vite": "vite",
-    "build": "vite build",
+    "start": "vite build",
     "preview": "vite preview"
   }
 }
