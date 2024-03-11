@@ -18,6 +18,13 @@ export default defineConfig({
             }
         }
     },
+    css: {
+        preprocessorOptions: {
+            scss: {
+                additionalData: `@import "./src/commonStyles/constants.scss";`,
+            },
+        },
+    },
     plugins: [handlebars({
         partialDirectory: resolve(__dirname, 'src/partials'),
         context: {

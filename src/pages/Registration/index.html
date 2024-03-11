@@ -1,22 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
-    <link rel="stylesheet" href="Registration.scss">
+    <link rel="stylesheet" href="../../commonStyles/common.scss">
 </head>
 <body>
-<section class="wrapper">
-    {{> titlePage title="Регистрация" }}
-    <div class="wrapper_input">
-        {{> input name="first_name" placeholder="Имя" type="text" }}
-        {{> input name="second_name" placeholder="Фамилия" type="text" }}
-        {{> input name="login" placeholder="Логин" type="text" }}
-        {{> input name="email" placeholder="Почта" type="text" }}
-        {{> input name="phone" placeholder="Телефон" type="text" }}
-        {{> input name="password" placeholder="Пароль" type="text" }}
-        {{> link link="../Profile/index.html" title="Регистрация" type="text" }}
-    </div>
-</section>
+<main>
+    <section class="wrapper">
+        {{> titlePage title="Регистрация" }}
+        <form class="wrapper">
+            {{> input name="first_name" placeholder="Имя" type="text" class="input" }}
+            {{> input name="second_name" placeholder="Фамилия" type="text" class="input" }}
+            {{> input name="login" placeholder="Логин" type="text" class="input" }}
+            {{> input name="email" placeholder="Почта" type="text" class="input" }}
+            {{> input name="phone" placeholder="Телефон" type="text" class="input" }}
+            {{> input name="password" placeholder="Пароль" type="text" class="input" }}
+            {{> link link="../Profile/index.html" title="Регистрация" type="text" }}
+        </form>
+    </section>
+</main>
 </body>
 </html>
