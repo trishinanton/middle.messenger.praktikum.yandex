@@ -20,6 +20,7 @@
     "node": "node app.cjs",
     "dev": "run-s clean build node",
     "dev:vite": "vite",
+    "start": "run-s clean build node",
     "build": "vite build",
     "preview": "vite preview"
   }
