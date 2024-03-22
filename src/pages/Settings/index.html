@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="../../commonStyles/common.scss">
+</head>
+<body>
+<main>
+    <section class="wrapper">
+        {{> titlePage title="Настройки" }}
+        <form class="wrapper">
+            {{> input name="avatar" placeholder="Аватар" type="file" class="input" }}
+            {{> input name="first_name" placeholder="Имя" type="text" class="input" }}
+            {{> input name="second_name" placeholder="Фамилия" type="text" class="input" }}
+            {{> input name="login" placeholder="Логин" type="text" class="input" }}
+            {{> input name="email" placeholder="Почта" type="text" class="input" }}
+            {{> input name="phone" placeholder="Телефон" type="text" class="input" }}
+            {{> input name="display_name" placeholder="Имя в чате" type="text" class="input" }}
+            {{> input name="oldPassword" placeholder="Старый пароль" type="text" class="input" }}
+            {{> input name="newPassword" placeholder="Новый пароль" type="text" class="input" }}
+            {{> link link="../Profile/index.html" title="Сохранить" type="text" class="input" }}
+        </form>
+    </section>
+</main>
+</body>
+</html>

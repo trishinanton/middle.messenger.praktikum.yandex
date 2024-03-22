@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Authorization</title>
+    <link rel="stylesheet" href="../../commonStyles/common.scss">
+</head>
+<body>
+<main>
+    <section>
+        <form class="wrapper">
+            {{> titlePage title="Вход" }}
+            {{> input name="login" placeholder="Логин" class="input" }}
+            {{> input name="password" placeholder="Пароль" type="text" class="input" }}
+            {{> link link="../Profile/index.html" title="Вход" }}
+            {{> link link="../Registration/index.html" title="Регистрация" }}
+        </form>
+    </section>
+</main>
+</body>
+</html>
