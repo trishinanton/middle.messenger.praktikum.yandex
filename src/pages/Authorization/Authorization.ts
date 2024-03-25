@@ -3,6 +3,7 @@ import { InputForm } from '../../components/InputForm';
 import { TitlePage } from '../../components/TitlePage';
 import { Link } from '../../components/Link';
 import { getFormData } from '../../helpers/getFormData';
+import { loginValidation, passwordValidation } from '../../helpers/validations';
 
 const title = new TitlePage({
   title: 'Вход',
@@ -13,6 +14,10 @@ const inputLogin = new InputForm({
   class: 'input',
   name: 'login',
   placeholder: 'Логин',
+  events: {
+    blur: loginValidation,
+  },
+  eventInterception: true,
 });
 
 const inputPassword = new InputForm({
@@ -20,6 +25,10 @@ const inputPassword = new InputForm({
   class: 'input',
   name: 'password',
   placeholder: 'Пароль',
+  events: {
+    blur: passwordValidation,
+  },
+  eventInterception: true,
 });
 
 const linkLogin = new Link({

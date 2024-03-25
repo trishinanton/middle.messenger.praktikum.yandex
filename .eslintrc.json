@@ -5,5 +5,13 @@
   ],
   "parserOptions": {
     "project": ["./tsconfig.json"]
+  },
+  "rules": {
+    "import/prefer-default-export": "off",
+    "no-alert": "off",
+    "no-useless-escape": "off",
+    "max-len": "off",
+    "array-callback-return": "off",
+    "no-underscore-dangle": "off"
   }
 }

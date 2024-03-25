@@ -3,6 +3,12 @@ import { render } from '../../helpers/render';
 import { InputForm } from '../../components/InputForm';
 import { Link } from '../../components/Link';
 import { getFormData } from '../../helpers/getFormData';
+import {
+  emailValidation,
+  firstOrSecondNameValidation,
+  passwordValidation,
+  phoneValidation,
+} from '../../helpers/validations';
 
 const title = new TitlePage({
   title: 'Настройки',
@@ -20,6 +26,10 @@ const inputFirstName = new InputForm({
   class: 'input',
   name: 'first_name',
   placeholder: 'Имя',
+  events: {
+    blur: firstOrSecondNameValidation,
+  },
+  eventInterception: true,
 });
 
 const inputSecondName = new InputForm({
@@ -27,6 +37,10 @@ const inputSecondName = new InputForm({
   class: 'input',
   name: 'second_name',
   placeholder: 'Фамилия',
+  events: {
+    blur: firstOrSecondNameValidation,
+  },
+  eventInterception: true,
 });
 
 const inputLogin = new InputForm({
@@ -41,6 +55,10 @@ const inputEmail = new InputForm({
   class: 'input',
   name: 'email',
   placeholder: 'Почта',
+  events: {
+    blur: emailValidation,
+  },
+  eventInterception: true,
 });
 
 const inputPhone = new InputForm({
@@ -48,6 +66,10 @@ const inputPhone = new InputForm({
   class: 'input',
   name: 'phone',
   placeholder: 'Телефон',
+  events: {
+    blur: phoneValidation,
+  },
+  eventInterception: true,
 });
 
 const inputDisplayName = new InputForm({
@@ -62,6 +84,10 @@ const inputOldPassword = new InputForm({
   class: 'input',
   name: 'oldPassword',
   placeholder: 'Старый пароль',
+  events: {
+    blur: passwordValidation,
+  },
+  eventInterception: true,
 });
 
 const inputNewPassword = new InputForm({
@@ -69,6 +95,10 @@ const inputNewPassword = new InputForm({
   class: 'input',
   name: 'newPassword',
   placeholder: 'Новый пароль',
+  events: {
+    blur: passwordValidation,
+  },
+  eventInterception: true,
 });
 
 const linkSave = new Link({

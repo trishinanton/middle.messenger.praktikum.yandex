@@ -45,6 +45,7 @@ export class Block {
   }
 
   _createResources() {
+    // @ts-ignore
     const { tagName } = this._meta;
     this._element = this._createDocumentElement(tagName) as HTMLElement;
 
@@ -56,7 +57,9 @@ export class Block {
   _addEvents() {
     const { events = {}, eventInterception } = this.props;
 
+    // @ts-ignore
     Object.keys(events).forEach((eventName) => {
+      // @ts-ignore
       this._element.addEventListener(eventName, events[eventName], eventInterception);
     });
   }
@@ -103,11 +106,8 @@ export class Block {
 
   _render() {
     const block = this.render();
-    // Этот небезопасный метод для упрощения логики
-    // Используйте шаблонизатор из npm или напишите свой безопасный
-    // Нужно не в строку компилировать (или делать это правильно),
-    // либо сразу в DOM-элементы возвращать из compile DOM-ноду
 
+    // @ts-ignore
     this._element.innerHTML = block;
     this._addEvents();
     this.dispatchComponentDidMount();
@@ -123,12 +123,13 @@ export class Block {
   _makePropsProxy(props) {
     return new Proxy(props, {
       get(target, prop) {
-        const value = target[prop];
+        const value = target[prop as string];
         return typeof value === 'function' ? value.bind(target) : value;
       },
       set: (target, prop, value) => {
         if (prop in target) {
-          target[prop] = value;
+          // eslint-disable-next-line no-param-reassign
+          target[prop as string] = value;
           this.eventBus().emit(Block.EVENTS.FLOW_CDU, { oldProps: props, newProps: target });
         } else {
           throw new Error('Access denied');
@@ -141,6 +142,7 @@ export class Block {
     } as ProxyHandler<Record<string, unknown>>);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   _createDocumentElement(tagName) {
     // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
     return document.createElement(tagName);

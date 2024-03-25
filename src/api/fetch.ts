@@ -19,6 +19,7 @@ interface Options {
   timeout?: number
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class HTTPTransport {
   get = (url, options:Options = {}) => this.request(url, { ...options, method: METHODS.GET }, options.timeout);
 
@@ -28,6 +29,7 @@ class HTTPTransport {
 
   delete = (url, options:Options = {}) => this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
 
+  // eslint-disable-next-line class-methods-use-this
   request = (url, options, timeout = 5000) => {
     const { method, data, headers } = options;
 
@@ -41,7 +43,7 @@ class HTTPTransport {
 
       if (headers) {
         Object.entries(headers).forEach(([key, value]) => {
-          xhr.setRequestHeader(key, value);
+          xhr.setRequestHeader(key, value as string);
         });
       }
 
