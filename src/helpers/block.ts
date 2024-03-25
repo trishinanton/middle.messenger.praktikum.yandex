@@ -8,8 +8,8 @@ export class Block {
     FLOW_CDU: "flow:component-did-update"
   };
 
-  _element = null;
-  _meta = null;
+  _element: HTMLElement | null = null;
+  _meta: Record<string, unknown> | null = null;
 
   /** JSDoc
    * @param {string} tagName
@@ -44,7 +44,7 @@ export class Block {
 
   _createResources() {
     const { tagName } = this._meta;
-    this._element = this._createDocumentElement(tagName);
+    this._element = this._createDocumentElement(tagName) as HTMLElement;
 
     if(this.props.className) {
       this._element.setAttribute("class", `${this.props.className}`)
@@ -55,7 +55,9 @@ export class Block {
     const {events = {}, eventInterception} = this.props;
 
     Object.keys(events).forEach(eventName => {
-      this._element.addEventListener(eventName, events[eventName], eventInterception);
+      if(this._element) {
+        this._element.addEventListener(eventName, events[eventName], eventInterception);
+      }
     });
   }
 
@@ -69,7 +71,7 @@ export class Block {
   }
 
 // Может переопределять пользователь, необязательно трогать
-  componentDidMount(oldProps) {}
+  componentDidMount() {}
 
   dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
@@ -146,13 +148,5 @@ export class Block {
   _createDocumentElement(tagName) {
     // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
     return document.createElement(tagName);
-  }
-
-  show() {
-    this._element.style.display = 'block';
-  }
-
-  hide() {
-    this._element.style.display = 'none';
   }
 }

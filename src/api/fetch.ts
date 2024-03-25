@@ -17,20 +17,24 @@ function queryStringify(data) {
     .join("&")
 }
 
+interface Options {
+  timeout?: number
+}
+
 class HTTPTransport {
-  get = (url, options = {}) => {
+  get = (url, options:Options = {}) => {
     return this.request(url, {...options, method: METHODS.GET}, options.timeout);
   }
 
-  put = (url, options = {}) => {
+  put = (url, options:Options = {}) => {
     return this.request(url, {...options, method: METHODS.PUT}, options.timeout);
   }
 
-  post = (url, options = {}) => {
+  post = (url, options:Options = {}) => {
     return this.request(url, {...options, method: METHODS.POST}, options.timeout);
   }
 
-  delete = (url, options = {}) => {
+  delete = (url, options:Options = {}) => {
     return this.request(url, {...options, method: METHODS.DELETE}, options.timeout);
   }
 
