@@ -5,7 +5,7 @@ export class EventBus {
     this.listeners = {};
   }
 
-  on(event, callback) {
+  on(event: string | number, callback: () => void) {
     if (!this.listeners[event]) {
       this.listeners[event] = [];
     }
@@ -13,7 +13,7 @@ export class EventBus {
     this.listeners[event].push(callback);
   }
 
-  off(event, callback) {
+  off(event: string | number, callback: () => void) {
     if (!this.listeners[event]) {
       throw new Error(`Нет события: ${event}`);
     }
@@ -23,7 +23,7 @@ export class EventBus {
     );
   }
 
-  emit(event, ...args) {
+  emit(event: string, ...args: ({ oldProps: any; newProps: Record<string, unknown>; } | undefined)[]) {
     if (!this.listeners[event]) {
       throw new Error(`Нет события: ${event}`);
     }

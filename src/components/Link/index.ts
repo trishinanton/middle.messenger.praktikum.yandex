@@ -3,7 +3,7 @@ import { Block } from '../../helpers/block';
 import { template } from './template';
 
 export class Link extends Block {
-  constructor(props) {
+  constructor(props: {} | undefined) {
     // Создаём враппер дом-элемент div
     super('div', props);
   }

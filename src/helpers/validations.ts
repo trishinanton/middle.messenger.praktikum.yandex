@@ -1,4 +1,4 @@
-export function firstOrSecondNameValidation(event) {
+export function firstOrSecondNameValidation(event: { target: HTMLInputElement }) {
   const firstNameValue = event.target.value.trim();
   const namePattern = /^[А-ЯЁA-Z][а-яёa-z\-]*$/;
 
@@ -7,7 +7,7 @@ export function firstOrSecondNameValidation(event) {
   }
 }
 
-export function loginValidation(event) {
+export function loginValidation(event:{ target: HTMLInputElement }) {
   const loginValue = event.target.value.trim();
   const loginPattern = /^[a-zA-Z0-9_-]{3,20}$/;
 
@@ -16,7 +16,7 @@ export function loginValidation(event) {
   }
 }
 
-export function emailValidation(event) {
+export function emailValidation(event:{ target: HTMLInputElement }) {
   const emailValue = event.target.value.trim();
   const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/;
 
@@ -25,7 +25,7 @@ export function emailValidation(event) {
   }
 }
 
-export function passwordValidation(event) {
+export function passwordValidation(event:{ target: HTMLInputElement }) {
   const passwordValue = event.target.value.trim();
   const passwordPattern = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,40}$/;
 
@@ -34,7 +34,7 @@ export function passwordValidation(event) {
   }
 }
 
-export function phoneValidation(event) {
+export function phoneValidation(event:{ target: HTMLInputElement }) {
   const phoneValue = event.target.value.trim();
   const phonePattern = /^\+?\d{10,15}$/;
 
@@ -43,7 +43,7 @@ export function phoneValidation(event) {
   }
 }
 
-export function messageValidation(event) {
+export function messageValidation(event:{ target: HTMLInputElement }) {
   const messageValue = event.target.value.trim();
 
   if (messageValue === '') {

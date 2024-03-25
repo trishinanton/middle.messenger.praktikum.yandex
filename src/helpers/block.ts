@@ -37,7 +37,7 @@ export class Block {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  _registerEvents(eventBus) {
+  _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
@@ -80,7 +80,7 @@ export class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  _componentDidUpdate(oldProps, newProps) {
+  _componentDidUpdate(oldProps: unknown, newProps: unknown) {
     const response = this.componentDidUpdate(oldProps, newProps);
     if (response) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
@@ -88,11 +88,11 @@ export class Block {
   }
 
   // Может переопределять пользователь, необязательно трогать
-  componentDidUpdate(oldProps, newProps) {
+  componentDidUpdate(oldProps: unknown, newProps: unknown) {
     return JSON.stringify(oldProps) !== JSON.stringify(newProps);
   }
 
-  setProps = (nextProps) => {
+  setProps = (nextProps:unknown) => {
     if (!nextProps) {
       return;
     }
@@ -120,7 +120,7 @@ export class Block {
     return this.element;
   }
 
-  _makePropsProxy(props) {
+  _makePropsProxy(props: {}) {
     return new Proxy(props, {
       get(target, prop) {
         const value = target[prop as string];
@@ -143,7 +143,7 @@ export class Block {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  _createDocumentElement(tagName) {
+  _createDocumentElement(tagName: string) {
     // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
     return document.createElement(tagName);
   }
