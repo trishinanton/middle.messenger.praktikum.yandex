@@ -6,6 +6,7 @@ export function getFormData() {
 
     const formDataObject = {};
     formData.forEach((value, key) => {
+      // @ts-ignore
       formDataObject[key] = value;
     });
 

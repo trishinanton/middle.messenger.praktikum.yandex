@@ -5,7 +5,7 @@ const METHODS = {
   DELETE: 'DELETE',
 };
 
-function queryStringify(data) {
+function queryStringify(data: { [x: string]: { toString: () => any; }; }) {
   if (!data || Object.keys(data).length < 1) {
     return '';
   }
@@ -21,16 +21,16 @@ interface Options {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 class HTTPTransport {
-  get = (url, options:Options = {}) => this.request(url, { ...options, method: METHODS.GET }, options.timeout);
+  get = (url: string, options:Options = {}) => this.request(url, { ...options, method: METHODS.GET }, options.timeout);
 
-  put = (url, options:Options = {}) => this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
+  put = (url: string, options:Options = {}) => this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
 
-  post = (url, options:Options = {}) => this.request(url, { ...options, method: METHODS.POST }, options.timeout);
+  post = (url: string, options:Options = {}) => this.request(url, { ...options, method: METHODS.POST }, options.timeout);
 
-  delete = (url, options:Options = {}) => this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
+  delete = (url: string, options:Options = {}) => this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
 
   // eslint-disable-next-line class-methods-use-this
-  request = (url, options, timeout = 5000) => {
+  request = (url: string, options: { method: any; timeout?: number | undefined; data?: any; headers?: any; }, timeout = 5000) => {
     const { method, data, headers } = options;
 
     return new Promise((resolve, reject) => {
