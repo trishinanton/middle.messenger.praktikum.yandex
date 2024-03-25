@@ -1,20 +1,18 @@
 const METHODS = {
   GET: 'GET',
-  PUT:'PUT',
-  POST:'POST',
-  DELETE:'DELETE'
+  PUT: 'PUT',
+  POST: 'POST',
+  DELETE: 'DELETE',
 };
 
 function queryStringify(data) {
-  if(!data || Object.keys(data).length <1) {
-    return ''
+  if (!data || Object.keys(data).length < 1) {
+    return '';
   }
-  return "?" + Object
+  return `?${Object
     .keys(data)
-    .map(function(key){
-      return key+"="+data[key].toString()
-    })
-    .join("&")
+    .map((key) => `${key}=${data[key].toString()}`)
+    .join('&')}`;
 }
 
 interface Options {
@@ -22,29 +20,21 @@ interface Options {
 }
 
 class HTTPTransport {
-  get = (url, options:Options = {}) => {
-    return this.request(url, {...options, method: METHODS.GET}, options.timeout);
-  }
+  get = (url, options:Options = {}) => this.request(url, { ...options, method: METHODS.GET }, options.timeout);
 
-  put = (url, options:Options = {}) => {
-    return this.request(url, {...options, method: METHODS.PUT}, options.timeout);
-  }
+  put = (url, options:Options = {}) => this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
 
-  post = (url, options:Options = {}) => {
-    return this.request(url, {...options, method: METHODS.POST}, options.timeout);
-  }
+  post = (url, options:Options = {}) => this.request(url, { ...options, method: METHODS.POST }, options.timeout);
 
-  delete = (url, options:Options = {}) => {
-    return this.request(url, {...options, method: METHODS.DELETE}, options.timeout);
-  }
+  delete = (url, options:Options = {}) => this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
 
   request = (url, options, timeout = 5000) => {
-    const {method, data, headers} = options;
+    const { method, data, headers } = options;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
 
-      const newUrl = method === METHODS.GET ? url+queryStringify(data) : url;
+      const newUrl = method === METHODS.GET ? url + queryStringify(data) : url;
 
       xhr.open(method, newUrl);
       xhr.timeout = timeout;
@@ -55,8 +45,7 @@ class HTTPTransport {
         });
       }
 
-
-      xhr.onload = function() {
+      xhr.onload = function () {
         resolve(xhr);
       };
 
@@ -69,7 +58,6 @@ class HTTPTransport {
       } else {
         xhr.send(data);
       }
-
     });
   };
 }

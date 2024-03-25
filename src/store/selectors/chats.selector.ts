@@ -1,5 +1,3 @@
-import {chatList} from "../modules/chats";
+import { chatList } from '../modules/chats';
 
-export const getChats = () => {
-  return chatList
-}
+export const getChats = () => chatList;

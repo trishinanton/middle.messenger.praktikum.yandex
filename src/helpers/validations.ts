@@ -1,4 +1,4 @@
-export function firstOrSecondNameValidation (event) {
+export function firstOrSecondNameValidation(event) {
   const firstNameValue = event.target.value.trim();
   const namePattern = /^[А-ЯЁA-Z][а-яёa-z\-]*$/;
 
@@ -7,7 +7,7 @@ export function firstOrSecondNameValidation (event) {
   }
 }
 
-export function loginValidation (event) {
+export function loginValidation(event) {
   const loginValue = event.target.value.trim();
   const loginPattern = /^[a-zA-Z0-9_-]{3,20}$/;
 
@@ -16,17 +16,16 @@ export function loginValidation (event) {
   }
 }
 
-export function emailValidation (event) {
+export function emailValidation(event) {
   const emailValue = event.target.value.trim();
   const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/;
 
   if (!emailPattern.test(emailValue)) {
     alert('Пожалуйста, введите корректный email. Email должен содержать латинские буквы, цифры, дефис, подчёркивание, символ "@" и точку после неё, перед которой должны быть буквы.');
   }
-
 }
 
-export function passwordValidation (event) {
+export function passwordValidation(event) {
   const passwordValue = event.target.value.trim();
   const passwordPattern = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,40}$/;
 
@@ -35,7 +34,7 @@ export function passwordValidation (event) {
   }
 }
 
-export function phoneValidation (event) {
+export function phoneValidation(event) {
   const phoneValue = event.target.value.trim();
   const phonePattern = /^\+?\d{10,15}$/;
 
@@ -44,11 +43,10 @@ export function phoneValidation (event) {
   }
 }
 
-export function messageValidation (event) {
+export function messageValidation(event) {
   const messageValue = event.target.value.trim();
 
   if (messageValue === '') {
     alert('Пожалуйста, введите сообщение.');
   }
-
 }

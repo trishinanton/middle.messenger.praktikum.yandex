@@ -1,1 +1,1 @@
-export const template = `<a id={{ id }} href={{ link }}>{{ title }}</a>`;
+export const template = '<a id={{ id }} href={{ link }}>{{ title }}</a>';

@@ -1,14 +1,15 @@
-import {EventBus} from "./eventBus";
+import { EventBus } from './eventBus';
 
 export class Block {
   static EVENTS:Record<string, string> = {
-    INIT: "init",
-    FLOW_CDM: "flow:component-did-mount",
-    FLOW_RENDER: "flow:render",
-    FLOW_CDU: "flow:component-did-update"
+    INIT: 'init',
+    FLOW_CDM: 'flow:component-did-mount',
+    FLOW_RENDER: 'flow:render',
+    FLOW_CDU: 'flow:component-did-update',
   };
 
   _element: HTMLElement | null = null;
+
   _meta: Record<string, unknown> | null = null;
 
   /** JSDoc
@@ -17,14 +18,15 @@ export class Block {
    *
    * @returns {void}
    */
-  props: Record<string, unknown>
-  eventBus: () => EventBus
+  props: Record<string, unknown>;
 
-  constructor(tagName = "div", props = {}) {
+  eventBus: () => EventBus;
+
+  constructor(tagName = 'div', props = {}) {
     const eventBus = new EventBus();
     this._meta = {
       tagName,
-      props
+      props,
     };
 
     this.props = this._makePropsProxy(props);
@@ -46,18 +48,16 @@ export class Block {
     const { tagName } = this._meta;
     this._element = this._createDocumentElement(tagName) as HTMLElement;
 
-    if(this.props.className) {
-      this._element.setAttribute("class", `${this.props.className}`)
+    if (this.props.className) {
+      this._element.setAttribute('class', `${this.props.className}`);
     }
   }
 
   _addEvents() {
-    const {events = {}, eventInterception} = this.props;
+    const { events = {}, eventInterception } = this.props;
 
-    Object.keys(events).forEach(eventName => {
-      if(this._element) {
-        this._element.addEventListener(eventName, events[eventName], eventInterception);
-      }
+    Object.keys(events).forEach((eventName) => {
+      this._element.addEventListener(eventName, events[eventName], eventInterception);
     });
   }
 
@@ -70,12 +70,11 @@ export class Block {
     this.componentDidMount();
   }
 
-// Может переопределять пользователь, необязательно трогать
+  // Может переопределять пользователь, необязательно трогать
   componentDidMount() {}
 
   dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
-
   }
 
   _componentDidUpdate(oldProps, newProps) {
@@ -85,13 +84,12 @@ export class Block {
     }
   }
 
-// Может переопределять пользователь, необязательно трогать
+  // Может переопределять пользователь, необязательно трогать
   componentDidUpdate(oldProps, newProps) {
-    return JSON.stringify(oldProps)!==JSON.stringify(newProps)
-
+    return JSON.stringify(oldProps) !== JSON.stringify(newProps);
   }
 
-  setProps = nextProps => {
+  setProps = (nextProps) => {
     if (!nextProps) {
       return;
     }
@@ -115,7 +113,7 @@ export class Block {
     this.dispatchComponentDidMount();
   }
 
-// Может переопределять пользователь, необязательно трогать
+  // Может переопределять пользователь, необязательно трогать
   render() {}
 
   getContent() {
@@ -123,11 +121,10 @@ export class Block {
   }
 
   _makePropsProxy(props) {
-
     return new Proxy(props, {
       get(target, prop) {
         const value = target[prop];
-        return typeof value === "function" ? value.bind(target) : value;
+        return typeof value === 'function' ? value.bind(target) : value;
       },
       set: (target, prop, value) => {
         if (prop in target) {
@@ -140,9 +137,8 @@ export class Block {
       },
       deleteProperty: () => {
         throw new Error('Access denied');
-      }
+      },
     } as ProxyHandler<Record<string, unknown>>);
-
   }
 
   _createDocumentElement(tagName) {

@@ -1,1 +1,1 @@
-export const template = `<h1>{{ title }}</h1>`
+export const template = '<h1>{{ title }}</h1>';

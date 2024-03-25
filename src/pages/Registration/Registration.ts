@@ -1,19 +1,19 @@
-import {TitlePage} from "../../components/TitlePage";
-import {render} from "../../helpers/render";
-import {InputForm} from "../../components/InputForm";
-import {Link} from "../../components/Link";
-import {getFormData} from "../../helpers/getFormData";
+import { TitlePage } from '../../components/TitlePage';
+import { render } from '../../helpers/render';
+import { InputForm } from '../../components/InputForm';
+import { Link } from '../../components/Link';
+import { getFormData } from '../../helpers/getFormData';
 import {
   emailValidation,
   firstOrSecondNameValidation,
   loginValidation,
   passwordValidation,
-  phoneValidation
-} from "../../helpers/validations";
+  phoneValidation,
+} from '../../helpers/validations';
 
 const title = new TitlePage({
-  title: 'Регистрация'
-})
+  title: 'Регистрация',
+});
 
 const inputFirstName = new InputForm({
   type: 'text',
@@ -21,10 +21,10 @@ const inputFirstName = new InputForm({
   name: 'first_name',
   placeholder: 'Имя',
   events: {
-    blur: firstOrSecondNameValidation
+    blur: firstOrSecondNameValidation,
   },
-  eventInterception: true
-})
+  eventInterception: true,
+});
 
 const inputSecondName = new InputForm({
   type: 'text',
@@ -32,10 +32,10 @@ const inputSecondName = new InputForm({
   name: 'second_name',
   placeholder: 'Фамилия',
   events: {
-    blur: firstOrSecondNameValidation
+    blur: firstOrSecondNameValidation,
   },
-  eventInterception: true
-})
+  eventInterception: true,
+});
 
 const inputLogin = new InputForm({
   type: 'text',
@@ -43,10 +43,10 @@ const inputLogin = new InputForm({
   name: 'login',
   placeholder: 'Логин',
   events: {
-    blur: loginValidation
+    blur: loginValidation,
   },
-  eventInterception: true
-})
+  eventInterception: true,
+});
 
 const inputEmail = new InputForm({
   type: 'text',
@@ -54,10 +54,10 @@ const inputEmail = new InputForm({
   name: 'email',
   placeholder: 'Почта',
   events: {
-    blur: emailValidation
+    blur: emailValidation,
   },
-  eventInterception: true
-})
+  eventInterception: true,
+});
 
 const inputPhone = new InputForm({
   type: 'text',
@@ -65,10 +65,10 @@ const inputPhone = new InputForm({
   name: 'phone',
   placeholder: 'Телефон',
   events: {
-    blur: phoneValidation
+    blur: phoneValidation,
   },
-  eventInterception: true
-})
+  eventInterception: true,
+});
 
 const inputPassword = new InputForm({
   type: 'text',
@@ -76,25 +76,25 @@ const inputPassword = new InputForm({
   name: 'password',
   placeholder: 'Пароль',
   events: {
-    blur: passwordValidation
+    blur: passwordValidation,
   },
-  eventInterception: true
-})
+  eventInterception: true,
+});
 
 const linkRegistration = new Link({
   link: '../Profile/index.html',
-  title: "Регистрация",
+  title: 'Регистрация',
   id: 'reg',
   events: {
-    click: getFormData
-  }
-})
+    click: getFormData,
+  },
+});
 
-render(".section_registration", title, true);
-render('.wrapper', inputFirstName)
-render('.wrapper', inputSecondName)
-render('.wrapper', inputLogin)
-render('.wrapper', inputEmail)
-render('.wrapper', inputPhone)
-render('.wrapper', inputPassword)
-render('.wrapper', linkRegistration)
+render('.section_registration', title, true);
+render('.wrapper', inputFirstName);
+render('.wrapper', inputSecondName);
+render('.wrapper', inputLogin);
+render('.wrapper', inputEmail);
+render('.wrapper', inputPhone);
+render('.wrapper', inputPassword);
+render('.wrapper', linkRegistration);

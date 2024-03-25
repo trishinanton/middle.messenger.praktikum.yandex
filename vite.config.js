@@ -24,11 +24,5 @@ export default defineConfig({
                 additionalData: `@import "./src/commonStyles/constants.scss";`,
             },
         },
-    },
-    plugins: [handlebars({
-        partialDirectory: resolve(__dirname, 'src/partials'),
-        context: {
-            username: 'Anton'
-        }
-    })],
+    }
 })
