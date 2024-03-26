@@ -23,14 +23,13 @@ export class EventBus {
     );
   }
 
-  emit(event: string, ...args: ({ oldProps: any; newProps: Record<string, unknown>; } | undefined)[]) {
+  emit(event: string, ...args: ({ oldProps: Record<string, unknown>; newProps: Record<string, unknown> } | undefined)[]) {
     if (!this.listeners[event]) {
       throw new Error(`Нет события: ${event}`);
     }
 
     this.listeners[event].forEach((listener) => {
-      // @ts-ignore
-      listener(...args);
+      listener(...args as []);
     });
   }
 }

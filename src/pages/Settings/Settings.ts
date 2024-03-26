@@ -28,6 +28,7 @@ const inputFirstName = new InputForm({
   placeholder: 'Имя',
   events: {
     blur: firstOrSecondNameValidation,
+    submit: firstOrSecondNameValidation,
   },
   eventInterception: true,
 });
@@ -39,6 +40,7 @@ const inputSecondName = new InputForm({
   placeholder: 'Фамилия',
   events: {
     blur: firstOrSecondNameValidation,
+    submit: firstOrSecondNameValidation,
   },
   eventInterception: true,
 });
@@ -57,6 +59,7 @@ const inputEmail = new InputForm({
   placeholder: 'Почта',
   events: {
     blur: emailValidation,
+    submit: emailValidation,
   },
   eventInterception: true,
 });
@@ -68,6 +71,7 @@ const inputPhone = new InputForm({
   placeholder: 'Телефон',
   events: {
     blur: phoneValidation,
+    submit: phoneValidation,
   },
   eventInterception: true,
 });
@@ -86,6 +90,7 @@ const inputOldPassword = new InputForm({
   placeholder: 'Старый пароль',
   events: {
     blur: passwordValidation,
+    submit: passwordValidation,
   },
   eventInterception: true,
 });
@@ -97,6 +102,7 @@ const inputNewPassword = new InputForm({
   placeholder: 'Новый пароль',
   events: {
     blur: passwordValidation,
+    submit: passwordValidation,
   },
   eventInterception: true,
 });

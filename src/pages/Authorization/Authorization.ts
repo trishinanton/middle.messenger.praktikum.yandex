@@ -16,6 +16,7 @@ const inputLogin = new InputForm({
   placeholder: 'Логин',
   events: {
     blur: loginValidation,
+    submit: loginValidation,
   },
   eventInterception: true,
 });
@@ -27,6 +28,7 @@ const inputPassword = new InputForm({
   placeholder: 'Пароль',
   events: {
     blur: passwordValidation,
+    submit: passwordValidation,
   },
   eventInterception: true,
 });

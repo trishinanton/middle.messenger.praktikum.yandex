@@ -10,7 +10,7 @@ export class Block {
 
   _element: HTMLElement | null = null;
 
-  _meta: Record<string, unknown> | null = null;
+  _meta: { tagName: string, props: unknown } | null = null;
 
   /** JSDoc
    * @param {string} tagName
@@ -45,8 +45,7 @@ export class Block {
   }
 
   _createResources() {
-    // @ts-ignore
-    const { tagName } = this._meta;
+    const { tagName } = this._meta as { tagName: string };
     this._element = this._createDocumentElement(tagName) as HTMLElement;
 
     if (this.props.className) {
@@ -55,12 +54,10 @@ export class Block {
   }
 
   _addEvents() {
-    const { events = {}, eventInterception } = this.props;
+    const { events = {}, eventInterception } = this.props as { events: Record<string, Function>, eventInterception:boolean };
 
-    // @ts-ignore
     Object.keys(events).forEach((eventName) => {
-      // @ts-ignore
-      this._element.addEventListener(eventName, events[eventName], eventInterception);
+      this._element?.addEventListener(eventName, events[eventName] as EventListenerOrEventListenerObject, eventInterception);
     });
   }
 
@@ -106,9 +103,9 @@ export class Block {
 
   _render() {
     const block = this.render();
+    const element = new DOMParser().parseFromString(block as unknown as string, 'text/html').body.firstChild;
 
-    // @ts-ignore
-    this._element.innerHTML = block;
+    this._element?.append(element as string | Node);
     this._addEvents();
     this.dispatchComponentDidMount();
   }
