@@ -5,7 +5,7 @@ const METHODS = {
   DELETE: 'DELETE',
 };
 
-function queryStringify(data: { [x: string]: { toString: () => any; }; }) {
+function queryStringify(data: { [x: string]: { toString: () => string; }; }) {
   if (!data || Object.keys(data).length < 1) {
     return '';
   }
@@ -30,13 +30,13 @@ class HTTPTransport {
   delete = (url: string, options:Options = {}) => this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
 
   // eslint-disable-next-line class-methods-use-this
-  request = (url: string, options: { method: any; timeout?: number | undefined; data?: any; headers?: any; }, timeout = 5000) => {
+  request = (url: string, options: { method: string; timeout?: number | undefined; data?: Object; headers?: Object }, timeout = 5000) => {
     const { method, data, headers } = options;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
 
-      const newUrl = method === METHODS.GET ? url + queryStringify(data) : url;
+      const newUrl = method === METHODS.GET ? url + queryStringify(data as { [x: string]: { toString: () => string; }; }) : url;
 
       xhr.open(method, newUrl);
       xhr.timeout = timeout;
@@ -58,7 +58,7 @@ class HTTPTransport {
       if (method === METHODS.GET || !data) {
         xhr.send();
       } else {
-        xhr.send(data);
+        xhr.send(data as Document | XMLHttpRequestBodyInit | null | undefined);
       }
     });
   };

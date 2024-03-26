@@ -25,6 +25,7 @@ const input = new InputForm({
   placeholder: 'Поиск',
   events: {
     blur: messageValidation,
+    submit: messageValidation,
   },
   eventInterception: true,
 });

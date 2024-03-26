@@ -1,11 +1,11 @@
-export const render = (query:string, block:unknown, insertBefore = false) => {
+import { Block } from './block';
+
+export const render = (query:string, block:Block, insertBefore = false) => {
   const root = document.querySelector(query);
   if (insertBefore) {
-    // @ts-ignore
-    root?.insertBefore(block.getContent(), root.firstChild);
+    root?.insertBefore(block.getContent() as Node, root.firstChild);
   } else {
-    // @ts-ignore
-    root?.appendChild(block.getContent());
+    root?.appendChild(block.getContent() as Node);
   }
   return root;
 };

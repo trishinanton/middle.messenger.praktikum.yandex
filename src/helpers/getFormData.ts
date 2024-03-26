@@ -4,9 +4,8 @@ export function getFormData() {
   if (form) {
     const formData = new FormData(form);
 
-    const formDataObject = {};
+    const formDataObject = {} as Record<string, unknown>;
     formData.forEach((value, key) => {
-      // @ts-ignore
       formDataObject[key] = value;
     });
 
