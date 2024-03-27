@@ -4,21 +4,14 @@
     <meta charset="UTF-8">
     <title>Profile</title>
     <link rel="stylesheet" href="../../commonStyles/common.scss">
+    <link rel="stylesheet" href="./Registration.scss">
 </head>
 <body>
 <main>
-    <section class="wrapper">
-        {{> titlePage title="Регистрация" }}
-        <form class="wrapper">
-            {{> input name="first_name" placeholder="Имя" type="text" class="input" }}
-            {{> input name="second_name" placeholder="Фамилия" type="text" class="input" }}
-            {{> input name="login" placeholder="Логин" type="text" class="input" }}
-            {{> input name="email" placeholder="Почта" type="text" class="input" }}
-            {{> input name="phone" placeholder="Телефон" type="text" class="input" }}
-            {{> input name="password" placeholder="Пароль" type="text" class="input" }}
-            {{> link link="../Profile/index.html" title="Регистрация" type="text" }}
-        </form>
+    <section class="section_registration">
+        <form class="wrapper"></form>
     </section>
 </main>
+<script type="module" src="./Registration.ts"></script>
 </body>
 </html>
