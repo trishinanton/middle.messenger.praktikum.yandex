@@ -1,9 +1,10 @@
 import { compile } from 'handlebars';
 import { Block } from '../../helpers/block';
 import { template } from './template';
+import { DescriptionType } from '../../types';
 
-export class Description extends Block {
-  constructor(props: {} | undefined) {
+export class Description<T extends DescriptionType> extends Block<T> {
+  constructor(props: T) {
     // Создаём враппер дом-элемент div
     super('div', props);
   }

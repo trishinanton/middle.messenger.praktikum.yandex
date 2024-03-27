@@ -4,12 +4,13 @@ import { TitlePage } from '../../components/TitlePage';
 import { Link } from '../../components/Link';
 import { getFormData } from '../../helpers/getFormData';
 import { loginValidation, passwordValidation } from '../../helpers/validations';
+import { InputFormType, LinkType, TitlePageType } from '../../types';
 
-const title = new TitlePage({
+const title = new TitlePage<TitlePageType>({
   title: 'Вход',
 });
 
-const inputLogin = new InputForm({
+const inputLogin = new InputForm<InputFormType>({
   type: 'text',
   class: 'input',
   name: 'login',
@@ -21,7 +22,7 @@ const inputLogin = new InputForm({
   eventInterception: true,
 });
 
-const inputPassword = new InputForm({
+const inputPassword = new InputForm<InputFormType>({
   type: 'text',
   class: 'input',
   name: 'password',
@@ -33,7 +34,7 @@ const inputPassword = new InputForm({
   eventInterception: true,
 });
 
-const linkLogin = new Link({
+const linkLogin = new Link<LinkType>({
   link: '../Profile/index.html',
   title: 'Вход',
   id: 'login',
@@ -42,14 +43,14 @@ const linkLogin = new Link({
   },
 });
 
-const linkRegistration = new Link({
+const linkRegistration = new Link<LinkType>({
   link: '../Registration/index.html',
   title: 'Регистрация',
   id: 'registration',
 });
 
-render('.wrapper', title);
-render('.wrapper', inputLogin);
-render('.wrapper', inputPassword);
-render('.wrapper', linkLogin);
-render('.wrapper', linkRegistration);
+render<TitlePageType>('.wrapper', title);
+render<InputFormType>('.wrapper', inputLogin);
+render<InputFormType>('.wrapper', inputPassword);
+render<LinkType>('.wrapper', linkLogin);
+render<LinkType>('.wrapper', linkRegistration);

@@ -10,12 +10,13 @@ import {
   passwordValidation,
   phoneValidation,
 } from '../../helpers/validations';
+import { InputFormType, LinkType, TitlePageType } from '../../types';
 
-const title = new TitlePage({
+const title = new TitlePage<TitlePageType>({
   title: 'Регистрация',
 });
 
-const inputFirstName = new InputForm({
+const inputFirstName = new InputForm<InputFormType>({
   type: 'text',
   class: 'input',
   name: 'first_name',
@@ -27,7 +28,7 @@ const inputFirstName = new InputForm({
   eventInterception: true,
 });
 
-const inputSecondName = new InputForm({
+const inputSecondName = new InputForm<InputFormType>({
   type: 'text',
   class: 'input',
   name: 'second_name',
@@ -39,7 +40,7 @@ const inputSecondName = new InputForm({
   eventInterception: true,
 });
 
-const inputLogin = new InputForm({
+const inputLogin = new InputForm<InputFormType>({
   type: 'text',
   class: 'input',
   name: 'login',
@@ -51,7 +52,7 @@ const inputLogin = new InputForm({
   eventInterception: true,
 });
 
-const inputEmail = new InputForm({
+const inputEmail = new InputForm<InputFormType>({
   type: 'text',
   class: 'input',
   name: 'email',
@@ -63,7 +64,7 @@ const inputEmail = new InputForm({
   eventInterception: true,
 });
 
-const inputPhone = new InputForm({
+const inputPhone = new InputForm<InputFormType>({
   type: 'text',
   class: 'input',
   name: 'phone',
@@ -75,7 +76,7 @@ const inputPhone = new InputForm({
   eventInterception: true,
 });
 
-const inputPassword = new InputForm({
+const inputPassword = new InputForm<InputFormType>({
   type: 'text',
   class: 'input',
   name: 'password',
@@ -87,7 +88,7 @@ const inputPassword = new InputForm({
   eventInterception: true,
 });
 
-const linkRegistration = new Link({
+const linkRegistration = new Link<LinkType>({
   link: '../Profile/index.html',
   title: 'Регистрация',
   id: 'reg',
@@ -96,11 +97,11 @@ const linkRegistration = new Link({
   },
 });
 
-render('.section_registration', title, true);
-render('.wrapper', inputFirstName);
-render('.wrapper', inputSecondName);
-render('.wrapper', inputLogin);
-render('.wrapper', inputEmail);
-render('.wrapper', inputPhone);
-render('.wrapper', inputPassword);
-render('.wrapper', linkRegistration);
+render<TitlePageType>('.section_registration', title, true);
+render<InputFormType>('.wrapper', inputFirstName);
+render<InputFormType>('.wrapper', inputSecondName);
+render<InputFormType>('.wrapper', inputLogin);
+render<InputFormType>('.wrapper', inputEmail);
+render<InputFormType>('.wrapper', inputPhone);
+render<InputFormType>('.wrapper', inputPassword);
+render<LinkType>('.wrapper', linkRegistration);

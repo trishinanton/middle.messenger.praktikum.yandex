@@ -9,19 +9,20 @@ import {
   passwordValidation,
   phoneValidation,
 } from '../../helpers/validations';
+import { InputFormType, LinkType, TitlePageType } from '../../types';
 
-const title = new TitlePage({
+const title = new TitlePage<TitlePageType>({
   title: 'Настройки',
 });
 
-const inputAvatar = new InputForm({
+const inputAvatar = new InputForm<InputFormType>({
   type: 'file',
   class: 'input',
   name: 'avatar',
   placeholder: 'Аватар',
 });
 
-const inputFirstName = new InputForm({
+const inputFirstName = new InputForm<InputFormType>({
   type: 'text',
   class: 'input',
   name: 'first_name',
@@ -33,7 +34,7 @@ const inputFirstName = new InputForm({
   eventInterception: true,
 });
 
-const inputSecondName = new InputForm({
+const inputSecondName = new InputForm<InputFormType>({
   type: 'text',
   class: 'input',
   name: 'second_name',
@@ -45,14 +46,14 @@ const inputSecondName = new InputForm({
   eventInterception: true,
 });
 
-const inputLogin = new InputForm({
+const inputLogin = new InputForm<InputFormType>({
   type: 'text',
   class: 'input',
   name: 'login',
   placeholder: 'Логин',
 });
 
-const inputEmail = new InputForm({
+const inputEmail = new InputForm<InputFormType>({
   type: 'text',
   class: 'input',
   name: 'email',
@@ -64,7 +65,7 @@ const inputEmail = new InputForm({
   eventInterception: true,
 });
 
-const inputPhone = new InputForm({
+const inputPhone = new InputForm<InputFormType>({
   type: 'text',
   class: 'input',
   name: 'phone',
@@ -76,14 +77,14 @@ const inputPhone = new InputForm({
   eventInterception: true,
 });
 
-const inputDisplayName = new InputForm({
+const inputDisplayName = new InputForm<InputFormType>({
   type: 'text',
   class: 'input',
   name: 'display_name',
   placeholder: 'Имя в чате',
 });
 
-const inputOldPassword = new InputForm({
+const inputOldPassword = new InputForm<InputFormType>({
   type: 'text',
   class: 'input',
   name: 'oldPassword',
@@ -95,7 +96,7 @@ const inputOldPassword = new InputForm({
   eventInterception: true,
 });
 
-const inputNewPassword = new InputForm({
+const inputNewPassword = new InputForm<InputFormType>({
   type: 'text',
   class: 'input',
   name: 'newPassword',
@@ -107,7 +108,7 @@ const inputNewPassword = new InputForm({
   eventInterception: true,
 });
 
-const linkSave = new Link({
+const linkSave = new Link<LinkType>({
   link: '../Profile/index.html',
   title: 'Сохранить',
   id: 'save',
@@ -116,14 +117,14 @@ const linkSave = new Link({
   },
 });
 
-render('.section_settings', title, true);
-render('.wrapper', inputAvatar);
-render('.wrapper', inputFirstName);
-render('.wrapper', inputSecondName);
-render('.wrapper', inputLogin);
-render('.wrapper', inputEmail);
-render('.wrapper', inputPhone);
-render('.wrapper', inputDisplayName);
-render('.wrapper', inputOldPassword);
-render('.wrapper', inputNewPassword);
-render('.wrapper', linkSave);
+render<TitlePageType>('.section_settings', title, true);
+render<InputFormType>('.wrapper', inputAvatar);
+render<InputFormType>('.wrapper', inputFirstName);
+render<InputFormType>('.wrapper', inputSecondName);
+render<InputFormType>('.wrapper', inputLogin);
+render<InputFormType>('.wrapper', inputEmail);
+render<InputFormType>('.wrapper', inputPhone);
+render<InputFormType>('.wrapper', inputDisplayName);
+render<InputFormType>('.wrapper', inputOldPassword);
+render<InputFormType>('.wrapper', inputNewPassword);
+render<LinkType>('.wrapper', linkSave);

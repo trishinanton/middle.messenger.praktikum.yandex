@@ -1,9 +1,10 @@
 import { compile } from 'handlebars';
 import { Block } from '../../helpers/block';
 import { template } from './template';
+import { InputFormType } from '../../types';
 
-export class InputForm extends Block {
-  constructor(props: {} | undefined) {
+export class InputForm<T extends InputFormType> extends Block<T> {
+  constructor(props: T) {
     // Создаём враппер дом-элемент div
     super('div', props);
   }
