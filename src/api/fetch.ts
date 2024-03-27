@@ -19,18 +19,20 @@ interface Options {
   timeout?: number
 }
 
+type MethodType = (url: string, options:Options) => Promise<unknown>;
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 class HTTPTransport {
-  get = (url: string, options:Options = {}) => this.request(url, { ...options, method: METHODS.GET }, options.timeout);
+  get:MethodType = (url, options = {}) => this.request(url, { ...options, method: METHODS.GET }, options.timeout);
 
-  put = (url: string, options:Options = {}) => this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
+  put:MethodType = (url, options = {}) => this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
 
-  post = (url: string, options:Options = {}) => this.request(url, { ...options, method: METHODS.POST }, options.timeout);
+  post:MethodType = (url, options = {}) => this.request(url, { ...options, method: METHODS.POST }, options.timeout);
 
-  delete = (url: string, options:Options = {}) => this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
+  delete:MethodType = (url, options = {}) => this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
 
   // eslint-disable-next-line class-methods-use-this
-  request = (url: string, options: { method: string; timeout?: number | undefined; data?: Object; headers?: Object }, timeout = 5000) => {
+  request = (url:string, options: { method: string; timeout?: number | undefined; data?: Object; headers?: Object }, timeout = 5000) => {
     const { method, data, headers } = options;
 
     return new Promise((resolve, reject) => {
@@ -47,7 +49,7 @@ class HTTPTransport {
         });
       }
 
-      xhr.onload = function () {
+      xhr.onload = () => {
         resolve(xhr);
       };
 

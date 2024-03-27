@@ -1,4 +1,4 @@
-export class EventBus {
+export class EventBus<T> {
   listeners: Record<string, Array<()=>void>>;
 
   constructor() {
@@ -23,7 +23,7 @@ export class EventBus {
     );
   }
 
-  emit(event: string, ...args: ({ oldProps: Record<string, unknown>; newProps: Record<string, unknown> } | undefined)[]) {
+  emit(event: string, ...args: ({ oldProps: T; newProps: T } | undefined)[]) {
     if (!this.listeners[event]) {
       throw new Error(`Нет события: ${event}`);
     }
