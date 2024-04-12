@@ -36,6 +36,7 @@ a {
   color: $blue;
   text-decoration: inherit;
 }
+
 a:hover {
   color: $blue;
 }
@@ -73,9 +74,11 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: $blue;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
