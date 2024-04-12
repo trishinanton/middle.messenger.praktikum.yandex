@@ -12,6 +12,7 @@
     "no-useless-escape": "off",
     "max-len": "off",
     "array-callback-return": "off",
-    "no-underscore-dangle": "off"
+    "no-underscore-dangle": "off",
+    "max-classes-per-file": "off"
   }
 }
