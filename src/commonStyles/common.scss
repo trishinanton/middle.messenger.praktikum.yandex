@@ -16,6 +16,53 @@
   margin-bottom: 8px;
 }
 
+//Profile
+.section_profile {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.left_section_profile {
+    padding: 12px;
+    border-right: 1px solid white;
+}
+
+.correspondence {
+    padding: 12px;
+}
+
+.chats {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.chat_wrapper {
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 12px;
+    margin-bottom: 8px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+//Registration
+.section_registration {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+//Settings
+.section_settings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

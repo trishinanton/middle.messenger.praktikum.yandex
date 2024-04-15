@@ -1,27 +1,21 @@
 import { Block } from '../helpers/block';
 
-const render = <T extends object>(query: string, block:Block<T>):Element | null => {
-  const root = document.querySelector(query);
-  if (root) {
-    root.textContent = block.getContent();
-  }
-
-  return root;
+const render = (_: string, block:()=>void):void => {
+  block();
 };
 
-class Route<T extends object> {
+class Route {
   _pathname: string;
 
   _blockClass:typeof Block;
 
-  _block: null | Block<T>;
+  _block: () => { hide: ()=>void };
 
   _props: { rootQuery: string };
 
-  constructor(pathname: string, view: typeof Block, props: { rootQuery: string }) {
+  constructor(pathname: string, view: () => { hide: ()=>void }, props: { rootQuery: string }) {
     this._pathname = pathname;
-    this._blockClass = view;
-    this._block = null;
+    this._block = view;
     this._props = props;
   }
 
@@ -34,7 +28,7 @@ class Route<T extends object> {
 
   leave() {
     if (this._block) {
-      this._block.hide();
+      this._block().hide();
     }
   }
 
@@ -43,26 +37,26 @@ class Route<T extends object> {
   }
 
   render() {
-    if (!this._block) {
-      this._block = new this._blockClass();
-      render(this._props.rootQuery, this._block as Block<T>);
-      return;
-    }
+    render(this._props.rootQuery, this._block);
+    // if (!this._block) {
+    //   // this._block = new this._blockClass();
+    //   render(this._props.rootQuery, this._block);
+    // }
 
-    this._block.show();
+    // this._block.show();
   }
 }
 
-class Router<T extends object> {
-  routes: Array<Route<T>>;
+class Router {
+  routes: Array<Route>;
 
   history: History;
 
-  _currentRoute?: null | Route<T>;
+  _currentRoute?: null | Route;
 
   _rootQuery: string;
 
-  static __instance: Router<T>;
+  static __instance: Router;
 
   constructor(rootQuery: string) {
     if (Router.__instance) {
@@ -78,7 +72,7 @@ class Router<T extends object> {
     Router.__instance = this;
   }
 
-  use(pathname: string, block: typeof Block) {
+  use(pathname: string, block: () => { hide: ()=>void }) {
     const route = new Route(pathname, block, { rootQuery: this._rootQuery });
     this.routes.push(route);
     return this;
@@ -86,6 +80,7 @@ class Router<T extends object> {
 
   start() {
     window.onpopstate = (event:PopStateEvent) => {
+      // @ts-ignore
       this._onRoute(event.currentTarget?.location.pathname);
     };
 
@@ -123,4 +118,4 @@ class Router<T extends object> {
   }
 }
 
-const router = new Router('.app');
+export const router = new Router('#app');

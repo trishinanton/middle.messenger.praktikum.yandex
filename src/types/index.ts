@@ -18,6 +18,13 @@ export interface LinkType {
   events?: Record<string, Function>
 }
 
+export interface ButtonType {
+  type?: string
+  title?: string
+  id?: string
+  events?: Record<string, Function>
+}
+
 export interface ChatType {
   text: string
   wrapperClassName?: string
