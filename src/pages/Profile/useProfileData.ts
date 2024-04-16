@@ -9,9 +9,9 @@ import {
 import { callHandlersWS, createWSThunk } from '../../store/modules/websocket';
 import { getFormData } from '../../helpers/getFormData';
 import { ChatMessage } from '../../types/user';
+import { renderChats } from './Chats';
 
 export const useProfileData = () => {
-  let socket:WebSocket;
   const getUser = async () => {
     const user = await getUserInfoThunk();
     return user;
@@ -35,15 +35,7 @@ export const useProfileData = () => {
     await createChat((input as HTMLInputElement).value);
   };
 
-  const onClickChat = (id:number) => async () => {
-    // await addUsersToChatThunk([userId], id);
-    const user = await getUser();
-    const token = await getChatTokenThunk(id);
-    socket = await createWSThunk(user.id, id, token);
-    callHandlersWS(socket);
-  };
-
-  const onSendMessage = () => {
+  const onSendMessage = (socket:WebSocket) => () => {
     const form = document.querySelector('.messages_wrapper');
     const data = getFormData<ChatMessage>(form as HTMLFormElement);
     socket.send(JSON.stringify({
@@ -52,12 +44,20 @@ export const useProfileData = () => {
     }));
   };
 
+  const onClickChat = (id:number, title: string) => async () => {
+    // await addUsersToChatThunk([userId], id);
+    const user = await getUser();
+    const token = await getChatTokenThunk(id);
+    const socket = await createWSThunk(user.id, id, token);
+    callHandlersWS(socket);
+    renderChats(onSendMessage(socket), title);
+  };
+
   return {
     getUser,
     onLogOut,
     getChatsList,
     onCreateChat,
     onClickChat,
-    onSendMessage,
   };
 };
