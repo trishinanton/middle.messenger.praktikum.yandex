@@ -1,10 +1,10 @@
 import { compile } from 'handlebars';
+import { PictureType } from '../../types';
 import { Block } from '../../helpers/block';
 import { template } from './template';
-import { ChatType } from '../../types';
 
-export class Chat<T extends ChatType> extends Block<T> {
-  constructor(props:T) {
+export class Picture<T extends PictureType> extends Block<T> {
+  constructor(props: T) {
     // Создаём враппер дом-элемент div
     super('div', props);
   }
@@ -12,7 +12,9 @@ export class Chat<T extends ChatType> extends Block<T> {
   render() {
     const templateHandlebars = compile(template);
     return templateHandlebars({
-      title: this.props.title,
+      src: this.props.src,
+      alt: this.props.alt,
+      class: this.props.class,
     });
   }
 }

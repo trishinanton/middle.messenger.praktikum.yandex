@@ -1,14 +1,14 @@
-const form = document.querySelector('form');
-
-export function getFormData() {
+export const getFormData = <T extends object>(form:HTMLFormElement):T => {
   if (form) {
-    const formData = new FormData(form);
+    const formData:FormData = new FormData(form);
 
-    const formDataObject = {} as Record<string, unknown>;
+    const formDataObject:T = {} as T;
     formData.forEach((value, key) => {
-      formDataObject[key] = value;
+      (formDataObject as { [index: string]:unknown })[key] = value;
     });
 
-    console.log('formDataObject:', formDataObject);
+    return formDataObject;
   }
-}
+
+  return {} as T;
+};

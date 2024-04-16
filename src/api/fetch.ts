@@ -15,42 +15,49 @@ function queryStringify(data: { [x: string]: { toString: () => string; }; }) {
     .join('&')}`;
 }
 
-interface Options {
+type RequestOptions = {
   timeout?: number
-}
-
-type MethodType = (url: string, options:Options) => Promise<unknown>;
+};
+// type MethodType<T> = (url: string, options:RequestOptions & T) => Promise<unknown>;
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 class HTTPTransport {
-  get:MethodType = (url, options = {}) => this.request(url, { ...options, method: METHODS.GET }, options.timeout);
+  get = <T>(url:string, options: RequestOptions & T = {} as RequestOptions & T) => this.request(url, { ...options, method: METHODS.GET }, options.timeout);
 
-  put:MethodType = (url, options = {}) => this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
+  put = <T>(url:string, options:RequestOptions & T = {} as RequestOptions & T) => this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
 
-  post:MethodType = (url, options = {}) => this.request(url, { ...options, method: METHODS.POST }, options.timeout);
+  post = <T>(url: string, options:RequestOptions & T = {} as RequestOptions & T) => this.request(url, { ...options, method: METHODS.POST }, options.timeout);
 
-  delete:MethodType = (url, options = {}) => this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
+  delete = <T>(url:string, options:RequestOptions & T = {} as RequestOptions & T) => this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
 
   // eslint-disable-next-line class-methods-use-this
   request = (url:string, options: { method: string; timeout?: number | undefined; data?: Object; headers?: Object }, timeout = 5000) => {
     const { method, data, headers } = options;
-
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
+      let isApplicationJson = false;
 
       const newUrl = method === METHODS.GET ? url + queryStringify(data as { [x: string]: { toString: () => string; }; }) : url;
 
+      xhr.withCredentials = true;
       xhr.open(method, newUrl);
       xhr.timeout = timeout;
 
       if (headers) {
         Object.entries(headers).forEach(([key, value]) => {
           xhr.setRequestHeader(key, value as string);
+          if (value.includes('application/json')) {
+            isApplicationJson = true;
+          }
         });
       }
 
       xhr.onload = () => {
-        resolve(xhr);
+        if (xhr.status > 299) {
+          reject(xhr.responseText);
+        }
+
+        resolve(JSON.parse(xhr.response));
       };
 
       xhr.onabort = reject;
@@ -59,9 +66,13 @@ class HTTPTransport {
 
       if (method === METHODS.GET || !data) {
         xhr.send();
+      } else if (isApplicationJson) {
+        xhr.send(JSON.stringify(data) as Document | XMLHttpRequestBodyInit | null | undefined);
       } else {
         xhr.send(data as Document | XMLHttpRequestBodyInit | null | undefined);
       }
     });
   };
 }
+
+export const resource = new HTTPTransport();

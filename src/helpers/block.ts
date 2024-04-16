@@ -157,4 +157,18 @@ export class Block<T extends object> {
     // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
     return document.createElement(tagName);
   }
+
+  show() {
+    const el = this.getContent();
+    if (el) {
+      el.style.display = 'block';
+    }
+  }
+
+  hide() {
+    const el = this.getContent();
+    if (el) {
+      el.style.display = 'none';
+    }
+  }
 }
