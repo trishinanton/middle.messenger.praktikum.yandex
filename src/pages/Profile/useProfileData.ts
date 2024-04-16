@@ -7,9 +7,11 @@ import {
 } from '../../store/modules/chats';
 
 import { callHandlersWS, createWSThunk } from '../../store/modules/websocket';
+import { getFormData } from '../../helpers/getFormData';
+import { ChatMessage } from '../../types/user';
 
-const userId = 138;
 export const useProfileData = () => {
+  let socket:WebSocket;
   const getUser = async () => {
     const user = await getUserInfoThunk();
     return user;
@@ -29,14 +31,25 @@ export const useProfileData = () => {
   };
 
   const onCreateChat = async () => {
-    await createChat('');
+    const input = document.querySelector('.input_chat_name');
+    await createChat((input as HTMLInputElement).value);
   };
 
   const onClickChat = (id:number) => async () => {
     // await addUsersToChatThunk([userId], id);
+    const user = await getUser();
     const token = await getChatTokenThunk(id);
-    const socket = await createWSThunk(userId, id, token);
+    socket = await createWSThunk(user.id, id, token);
     callHandlersWS(socket);
+  };
+
+  const onSendMessage = () => {
+    const form = document.querySelector('.messages_wrapper');
+    const data = getFormData<ChatMessage>(form as HTMLFormElement);
+    socket.send(JSON.stringify({
+      content: data.message,
+      type: 'message',
+    }));
   };
 
   return {
@@ -45,5 +58,6 @@ export const useProfileData = () => {
     getChatsList,
     onCreateChat,
     onClickChat,
+    onSendMessage,
   };
 };

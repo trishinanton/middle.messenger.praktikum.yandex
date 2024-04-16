@@ -31,7 +31,7 @@ export const getChatToken = (id: number) => {
 export const postCreateChat = (title: string) => {
   const response = resource.post<CreateChat>(`${YandexApi}v2/chats`, {
     data: {
-      title: `${title}Тестовый чат`,
+      title,
     },
     headers: {
       'Content-type': 'application/json; charset=utf-8',

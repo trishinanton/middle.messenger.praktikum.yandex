@@ -29,6 +29,7 @@ export const Profile = () => {
     getChatsList,
     onCreateChat,
     onClickChat,
+    onSendMessage,
   } = useProfileData();
 
   const title = new TitlePage<TitlePageType>({
@@ -57,6 +58,20 @@ export const Profile = () => {
     eventInterception: true,
   });
 
+  const inputMessage = new InputForm<InputFormType>({
+    type: 'text',
+    class: 'input',
+    name: 'message',
+    placeholder: 'Введите сообщение',
+  });
+
+  const inputChatName = new InputForm<InputFormType>({
+    type: 'text',
+    class: 'input input_chat_name',
+    name: 'chat_name',
+    placeholder: 'Введите название чата',
+  });
+
   const buttonLogOut = new Button<ButtonType>({
     type: 'button',
     title: 'Разлогиниться',
@@ -75,6 +90,15 @@ export const Profile = () => {
     },
   });
 
+  const buttonSendMessage = new Button<ButtonType>({
+    type: 'button',
+    title: 'Отправить сообщение',
+    id: 'send_message',
+    events: {
+      click: onSendMessage,
+    },
+  });
+
   render<TitlePageType>('.wrapper', title);
   getUser().then((user) => {
     const avatar = new Picture<PictureType>({
@@ -87,7 +111,8 @@ export const Profile = () => {
   render<ButtonType>('.wrapper', buttonLogOut);
   render<ButtonType>('.wrapper', button);
   render<InputFormType>('.wrapper', input);
-  render<ButtonType>('.wrapper', buttonCreateChat);
+  render<InputFormType>('.add_chat', inputChatName);
+  render<ButtonType>('.add_chat', buttonCreateChat);
 
   getChatsList().then((chatList) => chatList.map((el) => {
     const chat = new Chat<ChatType>({
@@ -98,7 +123,8 @@ export const Profile = () => {
     });
     render<ChatType>('#chats', chat);
   }));
-
+  render<InputFormType>('.messages_wrapper', inputMessage);
+  render<ButtonType>('.messages_wrapper', buttonSendMessage);
   return {
     hide: hideContent(root),
   };

@@ -81,8 +81,10 @@ class Router {
   start() {
     // любое действие которое повлекло изменению активной записи history, кнопка назад/вперед или js код
     window.onpopstate = (event:PopStateEvent) => {
-      // @ts-ignore
-      this._onRoute(event.currentTarget?.location.pathname);
+      const target = event.currentTarget as Window;
+      if (target) {
+        this._onRoute(target.location.pathname);
+      }
     };
 
     this._onRoute(window.location.pathname);

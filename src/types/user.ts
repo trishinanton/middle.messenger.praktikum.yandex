@@ -29,3 +29,7 @@ export interface ChangeUserProfile {
 export interface ChangeAvatar {
   avatar: FormData
 }
+
+export interface ChatMessage {
+  message: string
+}

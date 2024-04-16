@@ -4,4 +4,5 @@ export interface CreateUserSource {
 
 export interface UserInfo {
   avatar: string
+  id: number
 }

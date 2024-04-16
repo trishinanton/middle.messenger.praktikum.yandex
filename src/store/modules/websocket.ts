@@ -1,15 +1,13 @@
 import { createSocket } from '../../api/resources';
+import { Description } from '../../components/Description';
+import { DescriptionType } from '../../types';
+import { render } from '../../helpers/render';
 
 export const createWSThunk = (userId:number, chatId:number, token:string) => createSocket(userId, chatId, token);
 
 export const callHandlersWS = (socket: WebSocket) => {
   socket.addEventListener('open', () => {
     console.log('Соединение установлено');
-
-    socket.send(JSON.stringify({
-      content: 'Моё первое сообщение миру!',
-      type: 'message',
-    }));
   });
 
   socket.addEventListener('close', (event) => {
@@ -23,7 +21,13 @@ export const callHandlersWS = (socket: WebSocket) => {
   });
 
   socket.addEventListener('message', (event) => {
-    console.log('Получены данные', event.data);
+    const { content } = JSON.parse(event.data);
+    console.log('Получены данные', content);
+    // todo в след спринтах отрефактори, бизнес логику от ui отдели
+    const description = new Description<DescriptionType>({
+      text: content,
+    });
+    render<DescriptionType>('#list_messages', description);
   });
 
   socket.addEventListener('error', (event) => {
