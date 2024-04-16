@@ -12,7 +12,12 @@ export const useAuthorizationData = () => {
       await signInUserThunk(data);
       onGoRoute('/messenger');
     } catch (err) {
-      alert(err);
+      const textErr = JSON.parse(err);
+      if (textErr.reason && textErr.reason.includes('User already in system')) {
+        onGoRoute('/messenger');
+      } else {
+        alert(err);
+      }
     }
   };
 

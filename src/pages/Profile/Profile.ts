@@ -29,7 +29,6 @@ export const Profile = () => {
     getChatsList,
     onCreateChat,
     onClickChat,
-    onSendMessage,
   } = useProfileData();
 
   const title = new TitlePage<TitlePageType>({
@@ -58,13 +57,6 @@ export const Profile = () => {
     eventInterception: true,
   });
 
-  const inputMessage = new InputForm<InputFormType>({
-    type: 'text',
-    class: 'input',
-    name: 'message',
-    placeholder: 'Введите сообщение',
-  });
-
   const inputChatName = new InputForm<InputFormType>({
     type: 'text',
     class: 'input input_chat_name',
@@ -90,15 +82,6 @@ export const Profile = () => {
     },
   });
 
-  const buttonSendMessage = new Button<ButtonType>({
-    type: 'button',
-    title: 'Отправить сообщение',
-    id: 'send_message',
-    events: {
-      click: onSendMessage,
-    },
-  });
-
   render<TitlePageType>('.wrapper', title);
   getUser().then((user) => {
     const avatar = new Picture<PictureType>({
@@ -117,14 +100,14 @@ export const Profile = () => {
   getChatsList().then((chatList) => chatList.map((el) => {
     const chat = new Chat<ChatType>({
       ...el,
+      wrapperClassName: 'chat_wrapper',
       events: {
-        click: onClickChat(el.id),
+        click: onClickChat(el.id, el.title),
       },
     });
     render<ChatType>('#chats', chat);
   }));
-  render<InputFormType>('.messages_wrapper', inputMessage);
-  render<ButtonType>('.messages_wrapper', buttonSendMessage);
+
   return {
     hide: hideContent(root),
   };

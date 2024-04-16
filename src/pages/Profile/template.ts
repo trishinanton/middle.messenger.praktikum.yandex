@@ -8,6 +8,7 @@ export const template = `
         </div>
         <div class="right_section_profile">
             <h3 class="correspondence">Лента переписки</h3>
+            <div class="title_chat"></div>
             <div id="list_messages"></div>
             <form class="messages_wrapper"></form>
         </div>
