@@ -1,7 +1,6 @@
 import { TitlePage } from '../../components/TitlePage';
 import { render } from '../../helpers/render';
 import { InputForm } from '../../components/InputForm';
-import { getFormData } from '../../helpers/getFormData';
 import {
   emailValidation,
   firstOrSecondNameValidation,
@@ -16,13 +15,15 @@ import {
 import { template } from '../Registration/template';
 import { hideContent } from '../../helpers/hideContent';
 import { Button } from '../../components/Button';
-import { onGoRoute } from '../../helpers/router';
+import { useSettingsData } from './useSettingsData';
 
 export const Settings = () => {
   const root = document.querySelector('#app');
   if (root) {
     root.insertAdjacentHTML('afterbegin', template);
   }
+
+  const { onChangePass, onChangeUserProfile, onChangeAvatar } = useSettingsData();
   const title = new TitlePage<TitlePageType>({
     title: 'Настройки',
   });
@@ -121,13 +122,29 @@ export const Settings = () => {
   });
 
   const buttonSave = new Button<ButtonType>({
-    title: 'Сохранить',
+    title: 'Изменить аватар',
+    type: 'button',
     id: 'save',
     events: {
-      click: () => {
-        getFormData();
-        onGoRoute('/messenger');
-      },
+      click: onChangeAvatar,
+    },
+  });
+
+  const buttonChangePass = new Button<ButtonType>({
+    type: 'button',
+    title: 'Изменить пароль',
+    id: 'save',
+    events: {
+      click: onChangePass,
+    },
+  });
+
+  const buttonChangeUserProfile = new Button<ButtonType>({
+    type: 'button',
+    title: 'Изменить данные пользователя',
+    id: 'save',
+    events: {
+      click: onChangeUserProfile,
     },
   });
 
@@ -141,6 +158,8 @@ export const Settings = () => {
   render<InputFormType>('.wrapper', inputDisplayName);
   render<InputFormType>('.wrapper', inputOldPassword);
   render<InputFormType>('.wrapper', inputNewPassword);
+  render<ButtonType>('.wrapper', buttonChangePass);
+  render<ButtonType>('.wrapper', buttonChangeUserProfile);
   render<ButtonType>('.wrapper', buttonSave);
 
   return {

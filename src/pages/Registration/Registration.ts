@@ -1,7 +1,6 @@
 import { TitlePage } from '../../components/TitlePage';
 import { render } from '../../helpers/render';
 import { InputForm } from '../../components/InputForm';
-import { getFormData } from '../../helpers/getFormData';
 import {
   emailValidation,
   firstOrSecondNameValidation,
@@ -17,9 +16,10 @@ import {
 import { template } from './template';
 import { hideContent } from '../../helpers/hideContent';
 import { Button } from '../../components/Button';
-import { onGoRoute } from '../../helpers/router';
+import { useRegistrationData } from './useRegistrationData';
 
 export const Registration = () => {
+  const { onClick } = useRegistrationData();
   const root = document.querySelector('#app');
   if (root) {
     root.insertAdjacentHTML('afterbegin', template);
@@ -102,13 +102,11 @@ export const Registration = () => {
   });
 
   const buttonRegistration = new Button<ButtonType>({
+    type: 'button',
     title: 'Регистрация',
     id: 'reg',
     events: {
-      click: () => {
-        getFormData();
-        onGoRoute('/settings');
-      },
+      click: onClick,
     },
   });
 

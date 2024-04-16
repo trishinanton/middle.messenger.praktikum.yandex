@@ -79,6 +79,7 @@ class Router {
   }
 
   start() {
+    // любое действие которое повлекло изменению активной записи history, кнопка назад/вперед или js код
     window.onpopstate = (event:PopStateEvent) => {
       // @ts-ignore
       this._onRoute(event.currentTarget?.location.pathname);
@@ -101,7 +102,9 @@ class Router {
   }
 
   go(pathname: string) {
+    // изменили только history
     this.history.pushState({}, '', pathname);
+    // отрисовали контент
     this._onRoute(pathname);
   }
 

@@ -12,7 +12,7 @@ export class Chat<T extends ChatType> extends Block<T> {
   render() {
     const templateHandlebars = compile(template);
     return templateHandlebars({
-      text: this.props.text,
+      title: this.props.title,
     });
   }
 }

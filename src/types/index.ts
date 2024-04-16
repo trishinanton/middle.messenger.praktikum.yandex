@@ -26,8 +26,9 @@ export interface ButtonType {
 }
 
 export interface ChatType {
-  text: string
+  title: string
   wrapperClassName?: string
+  events?: Record<string, Function>
 }
 
 export interface DescriptionType {

@@ -1,7 +1,6 @@
 import { render } from '../../helpers/render';
 import { InputForm } from '../../components/InputForm';
 import { TitlePage } from '../../components/TitlePage';
-import { getFormData } from '../../helpers/getFormData';
 import { loginValidation, passwordValidation } from '../../helpers/validations';
 import {
   ButtonType,
@@ -12,12 +11,15 @@ import { template } from './template';
 import { Button } from '../../components/Button';
 import { onGoRoute } from '../../helpers/router';
 import { hideContent } from '../../helpers/hideContent';
+import { useAuthorizationData } from './useAuthorizationData';
 
 export const Authorization = () => {
   const root = document.querySelector('#app');
   if (root) {
     root.insertAdjacentHTML('afterbegin', template);
   }
+
+  const { onClick } = useAuthorizationData();
 
   const title = new TitlePage<TitlePageType>({
     title: 'Вход',
@@ -49,16 +51,15 @@ export const Authorization = () => {
 
   const buttonLogin = new Button<ButtonType>({
     title: 'Вход',
+    type: 'button',
     id: 'login',
     events: {
-      click: () => {
-        getFormData();
-        onGoRoute('/messenger');
-      },
+      click: onClick,
     },
   });
 
   const buttonRegistration = new Button<ButtonType>({
+    type: 'button',
     title: 'Регистрация',
     id: 'registration',
     events: {

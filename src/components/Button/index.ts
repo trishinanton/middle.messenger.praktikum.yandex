@@ -14,6 +14,7 @@ export class Button<T extends ButtonType> extends Block<T> {
     return templateHandlebars({
       id: this.props.id,
       title: this.props.title,
+      type: this.props.type,
     });
   }
 }

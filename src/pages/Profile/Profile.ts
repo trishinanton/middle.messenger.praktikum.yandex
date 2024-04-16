@@ -1,4 +1,3 @@
-import { getChats } from '../../store/selectors/chats.selector';
 import { render } from '../../helpers/render';
 import { Chat } from '../../components/Chat';
 import { TitlePage } from '../../components/TitlePage';
@@ -14,6 +13,7 @@ import { template } from './template';
 import { onGoRoute } from '../../helpers/router';
 import { Button } from '../../components/Button';
 import { hideContent } from '../../helpers/hideContent';
+import { useProfileData } from './useProfileData';
 
 export const Profile = () => {
   const root = document.querySelector('#app');
@@ -21,7 +21,12 @@ export const Profile = () => {
     root.insertAdjacentHTML('afterbegin', template);
   }
 
-  const chatList = getChats();
+  const {
+    onLogOut,
+    getChatsList,
+    onCreateChat,
+    onClickChat,
+  } = useProfileData();
 
   const title = new TitlePage<TitlePageType>({
     title: 'Профиль',
@@ -49,14 +54,39 @@ export const Profile = () => {
     eventInterception: true,
   });
 
+  const buttonLogOut = new Button<ButtonType>({
+    type: 'button',
+    title: 'Разлогиниться',
+    id: 'logout',
+    events: {
+      click: onLogOut,
+    },
+  });
+
+  const buttonCreateChat = new Button<ButtonType>({
+    type: 'button',
+    title: 'Добавить чат',
+    id: 'create_chat',
+    events: {
+      click: onCreateChat,
+    },
+  });
+
   render<TitlePageType>('.wrapper', title);
+  render<ButtonType>('.wrapper', buttonLogOut);
   render<ButtonType>('.wrapper', button);
   render<InputFormType>('.wrapper', input);
+  render<ButtonType>('.wrapper', buttonCreateChat);
 
-  chatList.map((el) => {
-    const chat = new Chat<ChatType>(el);
+  getChatsList().then((chatList) => chatList.map((el) => {
+    const chat = new Chat<ChatType>({
+      ...el,
+      events: {
+        click: onClickChat(el.id),
+      },
+    });
     render<ChatType>('#chats', chat);
-  });
+  }));
 
   return {
     hide: hideContent(root),
