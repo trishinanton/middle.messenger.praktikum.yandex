@@ -34,3 +34,9 @@ export interface ChatType {
 export interface DescriptionType {
   text: string
 }
+
+export interface PictureType {
+  src: string
+  alt?: string
+  class?: string
+}

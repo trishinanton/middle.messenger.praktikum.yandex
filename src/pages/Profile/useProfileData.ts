@@ -1,4 +1,4 @@
-import { logOutUserThunk } from '../../store/modules/user';
+import { getUserInfoThunk, logOutUserThunk } from '../../store/modules/user';
 import { onGoRoute } from '../../helpers/router';
 import {
   createChat,
@@ -8,8 +8,12 @@ import {
 
 import { callHandlersWS, createWSThunk } from '../../store/modules/websocket';
 
+const userId = 138;
 export const useProfileData = () => {
-  const userId = 138;
+  const getUser = async () => {
+    const user = await getUserInfoThunk();
+    return user;
+  };
   const getChatsList = async () => {
     const chatList = await getAllChats();
     return chatList;
@@ -36,6 +40,7 @@ export const useProfileData = () => {
   };
 
   return {
+    getUser,
     onLogOut,
     getChatsList,
     onCreateChat,

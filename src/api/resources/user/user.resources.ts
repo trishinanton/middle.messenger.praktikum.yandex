@@ -1,13 +1,31 @@
 import { resource } from '../../fetch';
 import { YandexApi } from '../../config';
 import {
-  PostCreateUserType, PostSignInUserType, PutChangeAvatar, PutChangePassType, PutChangeUserProfileType,
+  GetUserInfoType,
+  PostCreateUserType,
+  PostSignInUserType,
+  PutChangeAvatar,
+  PutChangePassType,
+  PutChangeUserProfileType,
 } from '../../types/user';
 import {
-  ChangePass, ChangeUserProfile, CreateUserType, SignInUserType,
+  ChangePass,
+  ChangeUserProfile,
+  CreateUserType,
+  SignInUserType,
 } from '../../../types/user';
-import { CreateUserSource } from './user.source';
+import { CreateUserSource, UserInfo } from './user.source';
 
+export const getUserInfo = () => {
+  const response = resource.get<GetUserInfoType>(`${YandexApi}v2/auth/user`, {
+    data: {},
+    headers: {
+      'Content-type': 'application/json; charset=utf-8',
+    },
+  }).then((res:UserInfo) => res);
+
+  return response;
+};
 export const postCreateUser = (user:CreateUserType) => {
   const response = resource.post<PostCreateUserType>(`${YandexApi}v2/auth/signup`, {
     data: user,

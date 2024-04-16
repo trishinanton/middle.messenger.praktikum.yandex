@@ -6,7 +6,7 @@ import { messageValidation } from '../../helpers/validations';
 import {
   ButtonType,
   ChatType,
-  InputFormType,
+  InputFormType, PictureType,
   TitlePageType,
 } from '../../types';
 import { template } from './template';
@@ -14,6 +14,8 @@ import { onGoRoute } from '../../helpers/router';
 import { Button } from '../../components/Button';
 import { hideContent } from '../../helpers/hideContent';
 import { useProfileData } from './useProfileData';
+import { Picture } from '../../components/Picture';
+import { YandexApi } from '../../api/config';
 
 export const Profile = () => {
   const root = document.querySelector('#app');
@@ -22,6 +24,7 @@ export const Profile = () => {
   }
 
   const {
+    getUser,
     onLogOut,
     getChatsList,
     onCreateChat,
@@ -73,6 +76,14 @@ export const Profile = () => {
   });
 
   render<TitlePageType>('.wrapper', title);
+  getUser().then((user) => {
+    const avatar = new Picture<PictureType>({
+      src: `${YandexApi}v2/resources${user.avatar}`,
+      alt: 'avatar',
+      class: 'avatar',
+    });
+    render<PictureType>('.wrapper', avatar);
+  });
   render<ButtonType>('.wrapper', buttonLogOut);
   render<ButtonType>('.wrapper', button);
   render<InputFormType>('.wrapper', input);

@@ -41,3 +41,8 @@ export interface PutChangeUserProfileType {
   },
   headers: Record<string, string>
 }
+
+export interface GetUserInfoType {
+  data: {},
+  headers: Record<string, string>
+}

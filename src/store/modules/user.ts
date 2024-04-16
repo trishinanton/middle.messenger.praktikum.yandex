@@ -1,4 +1,5 @@
 import {
+  getUserInfo,
   postCreateUser,
   postLogOut,
   postSignInUser, putChangeAvatar,
@@ -16,6 +17,8 @@ interface UserStore {
 const initialState:UserStore = {
   id: null,
 };
+
+export const getUserInfoThunk = () => getUserInfo();
 
 export const createUserThunk = (data: CreateUserType) => postCreateUser(data)
   .then((id) => {
