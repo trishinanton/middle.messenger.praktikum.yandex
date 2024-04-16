@@ -8,6 +8,10 @@ export const createWSThunk = (userId:number, chatId:number, token:string) => cre
 export const callHandlersWS = (socket: WebSocket) => {
   socket.addEventListener('open', () => {
     console.log('Соединение установлено');
+    socket.send(JSON.stringify({
+      content: '0',
+      type: 'get old',
+    }));
   });
 
   socket.addEventListener('close', (event) => {
@@ -21,13 +25,22 @@ export const callHandlersWS = (socket: WebSocket) => {
   });
 
   socket.addEventListener('message', (event) => {
-    const { content } = JSON.parse(event.data);
-    console.log('Получены данные', content);
+    const data = JSON.parse(event.data);
+    console.log('Получены данные', data);
     // todo в след спринтах отрефактори, бизнес логику от ui отдели
-    const description = new Description<DescriptionType>({
-      text: content,
-    });
-    render<DescriptionType>('#list_messages', description);
+    if (Array.isArray(data)) {
+      data.map((el) => {
+        const description = new Description<DescriptionType>({
+          text: el.content,
+        });
+        render<DescriptionType>('#list_messages', description);
+      });
+    } else {
+      const description = new Description<DescriptionType>({
+        text: data.content,
+      });
+      render<DescriptionType>('#list_messages', description);
+    }
   });
 
   socket.addEventListener('error', (event) => {
