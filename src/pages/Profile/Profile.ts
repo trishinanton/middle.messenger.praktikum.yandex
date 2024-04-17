@@ -32,7 +32,7 @@ export const Profile = () => {
   } = useProfileData();
 
   const title = new TitlePage<TitlePageType>({
-    title: 'Профиль',
+    title: 'My Telegram',
   });
 
   const button = new Button<ButtonType>({

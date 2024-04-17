@@ -25,21 +25,25 @@ export const callHandlersWS = (socket: WebSocket) => {
   });
 
   socket.addEventListener('message', (event) => {
-    const data = JSON.parse(event.data);
-    console.log('Получены данные', data);
-    // todo в след спринтах отрефактори, бизнес логику от ui отдели
-    if (Array.isArray(data)) {
-      data.map((el) => {
+    try {
+      const data = JSON.parse(event.data);
+      console.log('Получены данные', data);
+      // todo в след спринтах отрефактори, бизнес логику от ui отдели
+      if (Array.isArray(data)) {
+        data.map((el) => {
+          const description = new Description<DescriptionType>({
+            text: el.content,
+          });
+          render<DescriptionType>('#list_messages', description);
+        });
+      } else {
         const description = new Description<DescriptionType>({
-          text: el.content,
+          text: data.content,
         });
         render<DescriptionType>('#list_messages', description);
-      });
-    } else {
-      const description = new Description<DescriptionType>({
-        text: data.content,
-      });
-      render<DescriptionType>('#list_messages', description);
+      }
+    } catch (e) {
+      alert('Получены данные некоректы');
     }
   });
 

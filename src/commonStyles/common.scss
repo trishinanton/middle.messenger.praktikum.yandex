@@ -26,6 +26,7 @@
 .left_section_profile {
     padding: 12px;
     border-right: 1px solid white;
+    margin-right: 60px;
 }
 
 .correspondence {
@@ -36,6 +37,9 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    height: 200px;
+    overflow-y: scroll;
+    margin-bottom: 40px;
 }
 
 .chat_wrapper {
@@ -71,6 +75,22 @@
 .title_chat {
     margin-bottom: 40px;
     font-weight: 600;
+}
+
+.add_user_to_shat {
+    margin-top: 60px;
+    border: 1px solid white;
+    padding: 40px;
+
+    &:empty {
+        display: none;
+    }
+}
+
+.list_messages {
+    height: 200px;
+    overflow-y: scroll;
+    margin-bottom: 20px;
 }
 
 :root {
