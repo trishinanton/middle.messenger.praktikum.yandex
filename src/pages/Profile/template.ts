@@ -9,8 +9,9 @@ export const template = `
         <div class="right_section_profile">
             <h3 class="correspondence">Лента переписки</h3>
             <div class="title_chat"></div>
-            <div id="list_messages"></div>
+            <div class="list_messages" id="list_messages"></div>
             <form class="messages_wrapper"></form>
+            <form class="add_user_to_shat"></form>     
         </div>
        
     </section>
