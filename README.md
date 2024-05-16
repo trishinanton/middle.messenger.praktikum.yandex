@@ -37,14 +37,16 @@
 
 Страница 500 ошибок: https://fancy-jalebi-545495.netlify.app/pages/Error500/index.html
 Страница 404 ошибок: https://fancy-jalebi-545495.netlify.app/pages/Error404/index.html
-Страница авторизации: https://fancy-jalebi-545495.netlify.app/pages/authorization/
-Страница профиля: https://fancy-jalebi-545495.netlify.app/pages/profile/
-Страница настроек: https://fancy-jalebi-545495.netlify.app/pages/settings/
+Страница авторизации: https://fancy-jalebi-545495.netlify.app/sign-in
+Страница регистрации: https://fancy-jalebi-545495.netlify.app/sign-up
+Страница профиля: https://fancy-jalebi-545495.netlify.app/messenger
+Страница настроек: https://fancy-jalebi-545495.netlify.app/settings
 
 В src/components - расположены общие компоненты, переиспользуемые во всем проекте
 В src/pages - расположены страницы проекта
 В src/api - необходимый функционал для работы с запросами на сервер
 В src/store - в будущем будет реализован функционал бизнес логики, согласно паттерну MVC
+В src/router - функционал роутинга приложения
 
 <a name="quality"></a>
 

@@ -1,5 +1,5 @@
 export const template = `
 <span>
-    {{ text }}
+    {{ title }}
 </span>
 `;

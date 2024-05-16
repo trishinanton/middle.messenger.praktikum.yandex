@@ -16,6 +16,83 @@
   margin-bottom: 8px;
 }
 
+//Profile
+.section_profile {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.left_section_profile {
+    padding: 12px;
+    border-right: 1px solid white;
+    margin-right: 60px;
+}
+
+.correspondence {
+    padding: 12px;
+}
+
+.chats {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 200px;
+    overflow-y: scroll;
+    margin-bottom: 40px;
+}
+
+.chat_wrapper {
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 12px;
+    margin-bottom: 8px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+//Registration
+.section_registration {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+//Settings
+.section_settings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+}
+
+.title_chat {
+    margin-bottom: 40px;
+    font-weight: 600;
+}
+
+.add_user_to_shat {
+    margin-top: 60px;
+    border: 1px solid white;
+    padding: 40px;
+
+    &:empty {
+        display: none;
+    }
+}
+
+.list_messages {
+    height: 200px;
+    overflow-y: scroll;
+    margin-bottom: 20px;
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

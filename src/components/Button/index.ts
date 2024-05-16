@@ -1,10 +1,10 @@
 import { compile } from 'handlebars';
 import { Block } from '../../helpers/block';
 import { template } from './template';
-import { ChatType } from '../../types';
+import { ButtonType } from '../../types';
 
-export class Chat<T extends ChatType> extends Block<T> {
-  constructor(props:T) {
+export class Button<T extends ButtonType> extends Block<T> {
+  constructor(props: T) {
     // Создаём враппер дом-элемент div
     super('div', props);
   }
@@ -12,7 +12,9 @@ export class Chat<T extends ChatType> extends Block<T> {
   render() {
     const templateHandlebars = compile(template);
     return templateHandlebars({
+      id: this.props.id,
       title: this.props.title,
+      type: this.props.type,
     });
   }
 }
