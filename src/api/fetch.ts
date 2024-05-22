@@ -21,7 +21,7 @@ type RequestOptions = {
 // type MethodType<T> = (url: string, options:RequestOptions & T) => Promise<unknown>;
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-class HTTPTransport {
+export class HTTPTransport {
   get = <T>(url:string, options: RequestOptions & T = {} as RequestOptions & T) => this.request(url, { ...options, method: METHODS.GET }, options.timeout);
 
   put = <T>(url:string, options:RequestOptions & T = {} as RequestOptions & T) => this.request(url, { ...options, method: METHODS.PUT }, options.timeout);

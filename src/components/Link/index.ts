@@ -1,6 +1,6 @@
-import { compile } from 'handlebars';
+import Handlebars from 'handlebars';
 import { Block } from '../../helpers/block';
-import { template } from './template';
+import { template } from './template.ts';
 import { LinkType } from '../../types';
 
 export class Link<T extends LinkType> extends Block<T> {
@@ -10,7 +10,7 @@ export class Link<T extends LinkType> extends Block<T> {
   }
 
   render() {
-    const templateHandlebars = compile(template);
+    const templateHandlebars = Handlebars.compile(template);
     return templateHandlebars({
       id: this.props.id,
       link: this.props.link,

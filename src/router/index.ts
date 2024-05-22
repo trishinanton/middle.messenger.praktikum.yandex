@@ -4,7 +4,7 @@ const render = (_: string, block:()=>void):void => {
   block();
 };
 
-class Route {
+export class Route {
   _pathname: string;
 
   _blockClass:typeof Block;
@@ -38,16 +38,10 @@ class Route {
 
   render() {
     render(this._props.rootQuery, this._block);
-    // if (!this._block) {
-    //   // this._block = new this._blockClass();
-    //   render(this._props.rootQuery, this._block);
-    // }
-
-    // this._block.show();
   }
 }
 
-class Router {
+export class Router {
   routes: Array<Route>;
 
   history: History;

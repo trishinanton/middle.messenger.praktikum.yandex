@@ -15,7 +15,7 @@
 
 ## Стек
 
-[express](https://expressjs.com/ru/) + [sass](https://sass-lang.com/) + [vite](https://vitejs.dev/) + [vite](https://handlebarsjs.com/)
+[express](https://expressjs.com/ru/) + [sass](https://sass-lang.com/) + [vite](https://vitejs.dev/) + [vite](https://handlebarsjs.com/) + [mocha](https://mochajs.org/)
 
 <a name="work_with_project"></a>
 

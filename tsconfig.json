@@ -1,22 +1,29 @@
 {
   "ts-node": {
-    "transpileOnly": true,
-    "esm": true,
-    "moduleTypes": {
-      "src/**/*.ts": "cjs"
-    }
+   "transpileOnly": true,
+    "esm": true
   },
   "compilerOptions": {
     "outDir": "dist",
-    "target": "es2017",
+    "target": "es2021",
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "declaration": false,
-    "module": "commonjs",
+    "module": "ESNext",
     "strictNullChecks": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "moduleResolution": "node",
   },
   "include": ["src"],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "coverage",
+    "dist",
+    "utils/tests",
+    "node_modules",
+    "**/*.test.js",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "__mocks__"
+  ]
 }

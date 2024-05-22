@@ -1,6 +1,6 @@
-import { compile } from 'handlebars';
-import { Block } from '../../helpers/block';
-import { template } from './template';
+import Handlebars from 'handlebars';
+import { Block } from '../../helpers/block.ts';
+import { template } from './template.ts';
 import { DescriptionType } from '../../types';
 
 export class Description<T extends DescriptionType> extends Block<T> {
@@ -10,7 +10,7 @@ export class Description<T extends DescriptionType> extends Block<T> {
   }
 
   render() {
-    const templateHandlebars = compile(template);
+    const templateHandlebars = Handlebars.compile(template);
     return templateHandlebars({
       text: this.props.text,
     });

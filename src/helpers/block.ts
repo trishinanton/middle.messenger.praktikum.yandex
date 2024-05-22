@@ -1,4 +1,4 @@
-import { EventBus } from './eventBus';
+import { EventBus } from './eventBus.ts';
 
 export class Block<T extends object> {
   static EVENTS:Record<string, string> = {

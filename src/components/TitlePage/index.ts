@@ -1,6 +1,6 @@
-import { compile } from 'handlebars';
-import { Block } from '../../helpers/block';
-import { template } from './template';
+import Handlebars from 'handlebars';
+import { Block } from '../../helpers/block.ts';
+import { template } from './template.ts';
 import { TitlePageType } from '../../types';
 
 export class TitlePage<T extends TitlePageType> extends Block<T> {
@@ -10,7 +10,7 @@ export class TitlePage<T extends TitlePageType> extends Block<T> {
   }
 
   render() {
-    const templateHandlebars = compile(template);
+    const templateHandlebars = Handlebars.compile(template);
     return templateHandlebars({
       title: this.props.title,
     });
