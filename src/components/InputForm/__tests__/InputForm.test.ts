@@ -1,5 +1,5 @@
 import sinon from 'sinon';
-import { InputForm } from '../index.ts';
+import { InputForm } from '..';
 
 describe('InputForm', () => {
   it('should call templateHandlebars function', () => {

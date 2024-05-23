@@ -1,29 +1,26 @@
 {
   "ts-node": {
-   "transpileOnly": true,
-    "esm": true
+    "transpileOnly": true,
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
   },
   "compilerOptions": {
     "outDir": "dist",
-    "target": "es2021",
+    "target": "es2017",
     "noImplicitAny": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "declaration": false,
     "module": "ESNext",
     "strictNullChecks": true,
     "sourceMap": true,
-    "moduleResolution": "node",
+    "moduleResolution": "node"
   },
   "include": ["src"],
   "exclude": [
     "coverage",
-    "dist",
-    "utils/tests",
-    "node_modules",
-    "**/*.test.js",
-    "**/*.test.ts",
-    "**/*.test.tsx",
-    "__mocks__"
+    "dist"
   ]
 }

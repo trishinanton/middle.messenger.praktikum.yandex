@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars';
 import { PictureType } from '../../types';
-import { Block } from '../../helpers/block.ts';
-import { template } from './template.ts';
+import { Block } from '../../helpers/block';
+import { template } from './template';
 
 export class Picture<T extends PictureType> extends Block<T> {
   constructor(props: T) {

@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars';
 import { Block } from '../../helpers/block';
-import { template } from './template.ts';
+import { template } from './template';
 import { LinkType } from '../../types';
 
 export class Link<T extends LinkType> extends Block<T> {
