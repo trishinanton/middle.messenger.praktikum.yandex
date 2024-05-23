@@ -1,10 +1,10 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
 
-import { Block } from '../block.ts';
+import { Block } from '../block';
 
 describe('Block', () => {
-  let block;
+  let block: Block<object>;
 
   beforeEach(() => {
     block = new Block();

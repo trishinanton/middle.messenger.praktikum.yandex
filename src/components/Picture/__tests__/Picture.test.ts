@@ -1,5 +1,5 @@
 import sinon from 'sinon';
-import { Picture } from '../index.ts';
+import { Picture } from '..';
 
 describe('Picture', () => {
   it('should call templateHandlebars function', () => {

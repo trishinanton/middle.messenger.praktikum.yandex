@@ -1,11 +1,12 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
 
-import { Route, Router } from '../index.ts';
+import { Route, Router } from '..';
+
+const mockHide = sinon.fake();
 
 describe('Route', () => {
-  let route;
-  const mockHide = sinon.fake();
+  let route: Route;
 
   beforeEach(() => {
     route = new Route('/test', () => ({ hide: mockHide }), { rootQuery: '#root' });
@@ -28,7 +29,7 @@ describe('Route', () => {
 });
 
 describe('Router', () => {
-  let router;
+  let router: Router | null;
   beforeEach(() => {
     router = new Router('#app');
   });
@@ -38,35 +39,45 @@ describe('Router', () => {
   });
 
   it('should add a route correctly', () => {
-    router.use('/test', () => {});
-    expect(router.routes.length).to.equal(1);
+    if (router) {
+      router.use('/test', (() => {}) as () => { hide: () => void; });
+      expect(router.routes.length).to.equal(1);
+    }
   });
 
   it('should get correct route for a given pathname', () => {
-    router.use('/test', () => {});
-    const route = router.getRoute('/test');
-    expect(route).to.not.be.undefined;
+    if (router) {
+      router.use('/test', (() => {}) as () => { hide: () => void; });
+      const route = router.getRoute('/test');
+      expect(route).to.not.be.undefined;
+    }
   });
 
   it('should navigate back in history', () => {
-    const historyBackStub = sinon.stub(router.history, 'back');
-    router.back();
-    expect(historyBackStub.called).to.be.true;
-    historyBackStub.restore();
+    if (router) {
+      const historyBackStub = sinon.stub(router.history, 'back');
+      router.back();
+      expect(historyBackStub.called).to.be.true;
+      historyBackStub.restore();
+    }
   });
 
   it('should navigate forward in history', () => {
-    const historyForwardStub = sinon.stub(router.history, 'forward');
-    router.forward();
-    expect(historyForwardStub.called).to.be.true;
-    historyForwardStub.restore();
+    if (router) {
+      const historyForwardStub = sinon.stub(router.history, 'forward');
+      router.forward();
+      expect(historyForwardStub.called).to.be.true;
+      historyForwardStub.restore();
+    }
   });
 
   it('should navigate to a new route', () => {
-    const historyPushStateStub = sinon.stub(router.history, 'pushState');
-    router.go('/new-route');
-    expect(historyPushStateStub.called).to.be.true;
-    expect(historyPushStateStub.args[0][2]).to.equal('/new-route');
-    historyPushStateStub.restore();
+    if (router) {
+      const historyPushStateStub = sinon.stub(router.history, 'pushState');
+      router.go('/new-route');
+      expect(historyPushStateStub.called).to.be.true;
+      expect(historyPushStateStub.args[0][2]).to.equal('/new-route');
+      historyPushStateStub.restore();
+    }
   });
 });

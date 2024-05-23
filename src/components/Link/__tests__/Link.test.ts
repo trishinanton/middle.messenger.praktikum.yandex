@@ -1,10 +1,10 @@
 import sinon from 'sinon';
-import { Link } from '../index.ts';
+import { Link } from '..';
 
 describe('Link', () => {
   it('should call templateHandlebars function', () => {
     const props = {
-      id: 1,
+      id: '1',
       link: 'link',
       title: 'title',
     };

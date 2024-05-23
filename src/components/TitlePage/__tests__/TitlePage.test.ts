@@ -1,5 +1,5 @@
 import sinon from 'sinon';
-import { TitlePage } from '../index.ts';
+import { TitlePage } from '..';
 
 describe('TitlePage', () => {
   it('should call templateHandlebars function', () => {

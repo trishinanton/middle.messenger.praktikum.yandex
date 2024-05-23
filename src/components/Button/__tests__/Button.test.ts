@@ -1,9 +1,9 @@
 import sinon from 'sinon';
-import { Button } from '../index.ts';
+import { Button } from '..';
 
 describe('Button', () => {
   it('should call templateHandlebars function', () => {
-    const props = { id: 1, title: 'Button', type: 'primary' };
+    const props = { id: '1', title: 'Button', type: 'primary' };
 
     const button = new Button(props);
 

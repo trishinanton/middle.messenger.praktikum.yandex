@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars';
-import { Block } from '../../helpers/block.ts';
-import { template } from './template.ts';
+import { Block } from '../../helpers/block';
+import { template } from './template';
 import { TitlePageType } from '../../types';
 
 export class TitlePage<T extends TitlePageType> extends Block<T> {

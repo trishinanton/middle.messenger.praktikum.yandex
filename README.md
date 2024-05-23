@@ -58,10 +58,11 @@
 | stylelint                 | [stylelint-config-sass-guidelines](https://github.com/bjankord/stylelint-config-sass-guidelines)                   |
 
 
-| Шаг                                                 | Команда            |
-|-----------------------------------------------------|--------------------|
-| сборка prod-версии                                  | `npm run build`    |
-| запуск prod-версии                                  | `npm run start`    |
+| Шаг                 | Команда         |
+|---------------------|-----------------|
+| сборка prod-версии  | `npm run build` |
+| запуск prod-версии  | `npm run start` |
+| запуск тестов       | `npm run test`  |
 
 Команды по отдельности и другие команды можно посмотреть в файле package.json
 

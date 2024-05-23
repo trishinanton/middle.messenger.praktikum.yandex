@@ -1,11 +1,11 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
 
-import { HTTPTransport } from '../fetch.ts';
+import { HTTPTransport } from '../fetch';
 
 describe('HTTPTransport', () => {
-  let xhr;
-  let requests;
+  let xhr: { onCreate: (req: any) => void; restore: () => void; };
+  let requests: any[];
 
   beforeEach(() => {
     xhr = sinon.useFakeXMLHttpRequest();
@@ -14,7 +14,6 @@ describe('HTTPTransport', () => {
       requests.push(req);
     };
   });
-
   afterEach(() => {
     xhr.restore();
   });

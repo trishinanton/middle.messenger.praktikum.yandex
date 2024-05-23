@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars';
-import { Block } from '../../helpers/block.ts';
-import { template } from './template.ts';
+import { Block } from '../../helpers/block';
+import { template } from './template';
 import { DescriptionType } from '../../types';
 
 export class Description<T extends DescriptionType> extends Block<T> {
