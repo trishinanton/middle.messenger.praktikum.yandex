@@ -13,6 +13,8 @@
     "max-len": "off",
     "array-callback-return": "off",
     "no-underscore-dangle": "off",
-    "max-classes-per-file": "off"
+    "max-classes-per-file": "off",
+    "import/extensions": "off",
+    "@typescript-eslint/no-unused-expressions": "off"
   }
 }

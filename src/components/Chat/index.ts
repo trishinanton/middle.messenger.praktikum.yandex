@@ -1,4 +1,4 @@
-import { compile } from 'handlebars';
+import Handlebars from 'handlebars';
 import { Block } from '../../helpers/block';
 import { template } from './template';
 import { ChatType } from '../../types';
@@ -10,7 +10,7 @@ export class Chat<T extends ChatType> extends Block<T> {
   }
 
   render() {
-    const templateHandlebars = compile(template);
+    const templateHandlebars = Handlebars.compile(template);
     return templateHandlebars({
       title: this.props.title,
     });

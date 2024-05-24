@@ -1,4 +1,4 @@
-import { compile } from 'handlebars';
+import Handlebars from 'handlebars';
 import { Block } from '../../helpers/block';
 import { template } from './template';
 import { InputFormType } from '../../types';
@@ -10,7 +10,7 @@ export class InputForm<T extends InputFormType> extends Block<T> {
   }
 
   render() {
-    const templateHandlebars = compile(template);
+    const templateHandlebars = Handlebars.compile(template);
     return templateHandlebars({
       type: this.props.type,
       class: this.props.class,
