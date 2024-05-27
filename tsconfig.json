@@ -18,7 +18,7 @@
     "sourceMap": true,
     "moduleResolution": "node"
   },
-  "include": ["src"],
+  "include": ["src", "mochaSetup.js"],
   "exclude": [
     "coverage",
     "dist"
