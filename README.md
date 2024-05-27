@@ -15,7 +15,7 @@
 
 ## Стек
 
-[express](https://expressjs.com/ru/) + [sass](https://sass-lang.com/) + [vite](https://vitejs.dev/) + [vite](https://handlebarsjs.com/)
+[express](https://expressjs.com/ru/) + [sass](https://sass-lang.com/) + [vite](https://vitejs.dev/) + [vite](https://handlebarsjs.com/) + [mocha](https://mochajs.org/)
 
 <a name="work_with_project"></a>
 
@@ -58,10 +58,11 @@
 | stylelint                 | [stylelint-config-sass-guidelines](https://github.com/bjankord/stylelint-config-sass-guidelines)                   |
 
 
-| Шаг                                                 | Команда            |
-|-----------------------------------------------------|--------------------|
-| сборка prod-версии                                  | `npm run build`    |
-| запуск prod-версии                                  | `npm run start`    |
+| Шаг                 | Команда         |
+|---------------------|-----------------|
+| сборка prod-версии  | `npm run build` |
+| запуск prod-версии  | `npm run start` |
+| запуск тестов       | `npm run test`  |
 
 Команды по отдельности и другие команды можно посмотреть в файле package.json
 
